@@ -4,10 +4,12 @@ import MakeAppointmentBtn from './MakeAppointmentBtn'
 const Home = () => {
   return (
     <div className='home'>
-        <MakeAppointmentBtn />
-            <p>
-                Information regarding our business      
-            </p>
+      <p className='homeInfoText'>
+        Denver Tennis Stringing is proud to assist our local tennis players in restringing their rackets. 
+        We offer same-day stringing with a variety of string options available.
+        <MakeAppointmentBtn /> 
+      </p>
+               
     </div>
   )
 }

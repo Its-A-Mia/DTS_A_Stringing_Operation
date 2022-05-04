@@ -1,13 +1,75 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.App {
+  height: 100vh;
+  inset: 0 0 0 0;
+  overflow: hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.menu {
+  z-index: 1;
+}
+
+.home {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0 0 0 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.homeInfoText {
+  display: grid;
+  justify-items: center;
+  background-color: black;
+  padding: 2rem;
+  border-radius: 20px;
+  width: 20%;
+  text-align: center;
+  color: white;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.makeAppointmentBtn {
+  margin-top: 50px;
+  height: 25px;
+  width: fit-content;
+}
+
+.makeAppointment {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0 0 0 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.aboutAndContact {
+  display: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset: 0 0 0 0;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo {
+  width: 100%;
+  position: absolute;
+  display: fixed;
+  z-index: 1;
+  padding: 1rem;
+  background: rgb(75, 75, 75);
+  color: white;
+  inset: 0 auto auto 0;
+}
+
+.dtslogo {
+  width: 200px;
 }

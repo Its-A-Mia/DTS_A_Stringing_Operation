@@ -1,13 +1,14 @@
-import './App.css';
 import AboutAndContact from './components/AboutAndContact';
 import Home from './components/Home';
-import LogoAndMenu from './components/LogoAndMenu';
+import Logo from './components/Logo';
 import MakeAppointment from './components/MakeAppointment';
+import Menu from './components/Menu';
 
 function App() {
   return (
     <div className="App">
-      <LogoAndMenu />
+      <Logo />
+      <Menu />
       <Home />
       <MakeAppointment />
       <AboutAndContact />
