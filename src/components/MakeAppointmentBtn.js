@@ -1,8 +1,11 @@
 import React from 'react'
 
-const MakeAppointmentBtn = () => {
+const MakeAppointmentBtn = (props) => {
+
   return (
-    <button className='makeAppointmentBtn'>MakeAppointment</button>
+    <button className='makeAppointmentBtn' onClick={() => props.setNewPageDestination('makeAppointment')}>
+      Make Appointment
+      </button>
   )
 }
 

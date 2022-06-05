@@ -1,5 +1,8 @@
+/*all animations are below class styles*/
+
 .App {
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   inset: 0 0 0 0;
   overflow: hidden;
 }
@@ -13,43 +16,137 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  inset: 0 0 0 0;
+  inset:  0 0 0;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
+  z-index: 2;
 }
 
-.homeInfoText {
+.homeBackgroundPicture {
+  display: fixed;
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+}
+
+.homeInfoTextWrapper {
+  translate: -10px;
+  z-index: 1;
   display: grid;
   justify-items: center;
-  background-color: black;
-  padding: 2rem;
-  border-radius: 20px;
-  width: 20%;
+  padding: 0.5rem 1.7rem 2rem 1.7rem;
+  width: 28%;
+  opacity: 100%;
+  height: fit-content;
   text-align: center;
   color: white;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Arial', 'Helvetica;', 'sans-serif';
+  animation: fadeIn 1.2s;
+  animation-timing-function: ease-in;
+}
+
+.homeInfoTextBacker {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 25px;
+  background: black;
+  opacity: 80%;
+  z-index: -1;
 }
 
 .makeAppointmentBtn {
-  margin-top: 50px;
-  height: 25px;
+  margin-top: 30px;
+  padding: 0.3rem 0.7rem;
+  border: none;
+  height: fit-content;
   width: fit-content;
+  font-size: large;
+  color: white;
+  cursor: pointer;
+  background: #A8B826;
+  /* NEW */
+  border-radius: 25px;
+  transition: background-color 0.3s;
 }
 
-.makeAppointment {
-  display: none;
+.makeAppointmentBtn:hover {
+  background-color: #FF3026;
+}
+
+.homePageLoadingBackground {
+  display: flex;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  inset:  0 0 0;
+  z-index: 1;
+  background-color: black;
+}
+
+.makeAppointmentWrapper {
+  display: flex;
   position: absolute;
   height: 100%;
   width: 100%;
   inset: 0 0 0 0;
   justify-content: center;
   align-items: center;
+  z-index: 0;
+  overflow: hidden;
+  background-image: url('/src/images/appointmentpagebg.png'); 
+}
+
+.orderFormWrapper {
+  display: flex;
   flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  line-height: 1.5em;
+}
+
+.orderFormWrapper h2 {
+  align-self: center;
+}
+
+.submitAppointmentBtn {
+  margin-top: 30px;
+  padding: 0.3rem 0.7rem;
+  border: none;
+  align-self: center;
+  height: fit-content;
+  width: fit-content;
+  font-size: large;
+  color: white;
+  cursor: pointer;
+  background: #A8B826;
+  /* NEW */
+  border-radius: 25px;
+  transition: background-color 0.3s;
+}
+
+.submitAppointmentBtn:hover {
+  background-color: #FF3026;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.appointmentRacketWrapper {   
+ margin-left: 150px;
+}
+
+.appointmentRacketWrapper img {
+  display: none;
+  transform: translateY(94px);
+  height: 100%;
 }
 
 .aboutAndContact {
-  display: none;
+  display: flex;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -57,19 +154,75 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 0;
+  overflow: hidden;
+  color: white;
+  background: black;
 }
 
-.logo {
+.aboutUsBackgroundPicture {
+  display: fixed;
+  position: absolute;
+  width: 1920px;
+  height: 1080px;
+}
+
+.menuBanner {            
   width: 100%;
   position: absolute;
-  display: fixed;
-  z-index: 1;
-  padding: 1rem;
-  background: rgb(75, 75, 75);
+  display: flex;
+  z-index: 3;
   color: white;
   inset: 0 auto auto 0;
 }
 
+.menuBannerBacker {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: rgb(75, 75, 75);
+  opacity: 80%;
+  z-index: -1;
+}
+
+.menuBtns {
+  display: flex;
+  position: relative;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  translate: -133px;
+  list-style: none;
+}
+
+.menuBtns button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.4rem 1rem;
+  color: white;
+  font-weight: bold;
+  font-size: large;
+  /* NEW */
+  border-radius: 25px;
+  letter-spacing: 0.1em;
+  transition: all .3s;
+}
+
+.menuBtns button:hover {
+  background-color: black;
+  /* font-size: larger; */
+  color: #D9E802;
+}
+
 .dtslogo {
   width: 200px;
+  cursor: pointer;
+  z-index: 3;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0%;}
+  to {opacity: 100%;}
 }
