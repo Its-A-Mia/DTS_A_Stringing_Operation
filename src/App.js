@@ -1,4 +1,4 @@
-import AboutAndContact from './components/AboutAndContact';
+import Info from './components/Info';
 import Home from './components/Home';
 import MenuBanner from './components/MenuBanner';
 import MakeAppointment from './components/MakeAppointment';
@@ -11,19 +11,19 @@ function App() {
   useEffect(() => {
     const home = document.getElementById('home')
     const makeAppointment = document.getElementById('makeAppointment')
-    const aboutUs = document.getElementById('aboutAndContact')
+    const info = document.getElementById('infoWrapper')
       if (newPageDestination === 'home') {
         home.style.zIndex = 2;
         makeAppointment.style.zIndex = 1;
-        aboutUs.style.zIndex = 1;
+        info.style.zIndex = 1;
       } if (newPageDestination === 'makeAppointment') {
         home.style.zIndex = 1;
         makeAppointment.style.zIndex = 2;
-        aboutUs.style.zIndex = 1;
-      } if (newPageDestination === 'aboutAndContact') {
+        info.style.zIndex = 1;
+      } if (newPageDestination === 'info') {
         home.style.zIndex = 1;
         makeAppointment.style.zIndex = 1;
-        aboutUs.style.zIndex = 2;
+        info.style.zIndex = 2;
       } 
     })
 
@@ -33,7 +33,7 @@ function App() {
       <Home setNewPageDestination={setNewPageDestination}/>
       <div className='homePageLoadingBackground'></div>
       <MakeAppointment />
-      <AboutAndContact />
+      <Info />
     </div>
   );
 }

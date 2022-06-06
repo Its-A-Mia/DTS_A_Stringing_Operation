@@ -19,7 +19,7 @@ const MenuBanner = (props) => {
             </button>
           </li>
           <li>
-            <button className='aboutUsBtn' onClick={() => props.setNewPageDestination('aboutAndContact')}>
+            <button className='infoBtn' onClick={() => props.setNewPageDestination('info')}>
               INFO
             </button>
           </li>

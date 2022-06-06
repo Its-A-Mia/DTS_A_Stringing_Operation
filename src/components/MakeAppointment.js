@@ -43,6 +43,11 @@ const MakeAppointment = (props) => {
     setCrossesDisplayBoolean(false)
   }
 
+  //Posts to Twilio through their REST API
+  function handleOrderFormSubmit() {
+    
+  }
+
   useEffect (() => {
     //logic to replace pictures showing highlighted strings
     const appointmentRacketBase = document.getElementById('appointmentRacketBase')
@@ -104,7 +109,8 @@ const MakeAppointment = (props) => {
   
   return (
     <div className='makeAppointmentWrapper' id='makeAppointment' onClick={() => handleHighlightClear()}>
-        <form className='orderFormWrapper'>
+
+        <form className='orderFormWrapper' onSubmit={handleOrderFormSubmit()}>
           <h2 className='underline'>Order Form</h2>
             <br></br>
           
@@ -149,25 +155,17 @@ const MakeAppointment = (props) => {
             <legend>String Type</legend>
               <label>Mains: </label>
               <select name='mainsStringType' id='mainsStringType' onClick={(e) => handleMainsInputClick(e)}>
-                <option value='RPMBlast'>RPM Blast</option>
-                <option value='HyperG'>Hyper G</option>
+                <option value='RPMBlast'>RPM Blast, 17 ga.</option>
+                <option value='HyperG'>Hyper G, 16 ga.</option>
+                <option value='Provide String'>Provide Your Own</option>
               </select>
                 <br></br>
               <label>Crosses: </label>
               <select name='crossesStringType' id='crossesStringType' onClick={(e) => handleCrossesInputClick(e)}>
-                <option value='RPMBlast'>RPM Blast</option>
-                <option value='HyperG'>Hyper G</option>
+                <option value='RPMBlast'>RPM Blast, 17 ga.</option>
+                <option value='HyperG'>Hyper G, 16 ga.</option>
+                <option value='Provide String'>Provide Your Own</option>
               </select>
-          </fieldset>
-          
-          <fieldset>
-            <legend>Scheduling</legend>
-              <label>Date of Drop-off: </label>
-              <input type='date' min={`${minDate}`} max={`${maxDate}`} required></input>
-                <br></br>
-              <label>Date of Pick-up: </label>
-              <input type='date' min={`${minDate}`} required></input>
-                <br></br>
           </fieldset>
 
           <fieldset>
@@ -180,6 +178,42 @@ const MakeAppointment = (props) => {
                 <br></br>
               <label>Regrip: </label>
               <input type='checkbox'></input>
+          </fieldset>
+
+          <fieldset>
+            <legend>Name & Contact Information</legend>
+              <label>Name: </label>
+              <input 
+                type='text'
+                size='31'
+                required>  
+              </input>
+                <br></br>
+              <label>Phone Number: </label>
+              <input 
+                type='text'
+                pattern='^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
+                placeholder='xxx-xxx-xxxx'
+                required>
+              </input>
+                <br></br>
+              <label>Email: </label>
+              <input 
+                type='text'
+                pattern='^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
+                placeholder='janedoe@domain.com'
+                required>
+              </input>
+          </fieldset>
+
+          <fieldset>
+            <legend>Scheduling</legend>
+              <label>Date of Drop-off: </label>
+              <input type='date' min={`${minDate}`} max={`${maxDate}`} required></input>
+                <br></br>
+              <label>Date of Pick-up: </label>
+              <input type='date' min={`${minDate}`} required></input>
+                <br></br>
           </fieldset>
 
           <input type='submit' value='Submit' className='submitAppointmentBtn'></input>
