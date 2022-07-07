@@ -4,7 +4,7 @@ const MakeAppointmentBtn = (props) => {
 
   return (
     <button className='makeAppointmentBtn' onClick={() => props.setNewPageDestination('makeAppointment')}>
-      Make Appointment
+      MAKE APPOINTMENT
       </button>
   )
 }

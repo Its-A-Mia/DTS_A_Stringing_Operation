@@ -1,3 +1,4 @@
+import React from 'react';
 import Info from './components/Info';
 import Home from './components/Home';
 import MenuBanner from './components/MenuBanner';

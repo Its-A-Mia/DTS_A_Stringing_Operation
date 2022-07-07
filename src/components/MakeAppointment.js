@@ -5,6 +5,7 @@ import tennisRacketNoStenCrossesHL from '../images/tennisracketnostencrosseshl.p
 import tennisRacketNoStenMainsHL from '../images/tennisracketnostenmainshl.png'
 import tennisRacketStenCrossesHL from '../images/tennisracketstencrosseshl.png'
 import tennisRacketStenMainsHL from '../images/tennisracketstenmainshl.png'
+import AppointmentPageBG from '../images/appointmentpagebg.png'
 
 const MakeAppointment = (props) => {
   //Creates a state for Mains in order to update page when clicked
@@ -82,7 +83,6 @@ const MakeAppointment = (props) => {
         if (mainsDisplayBoolean === true) {
           appointmentRacketBaseMainsHL.style.display = 'flex'
           appointmentRacketBase.style.display = 'none'
-          appointmentRacketStencilMainsHL.style.display = 'none'
         } else if (crossesDisplayBoolean === true) {    
           appointmentRacketBaseCrossesHL.style.display = 'flex' 
           appointmentRacketBase.style.display = 'none'
@@ -108,8 +108,12 @@ const MakeAppointment = (props) => {
   let maxDate = year + '-' + maxMonth + '-' + '28'
   
   return (
-    <div className='makeAppointmentWrapper' id='makeAppointment' onClick={() => handleHighlightClear()}>
-
+    <div 
+      className='makeAppointmentWrapper' 
+      id='makeAppointment' 
+      onClick={() => handleHighlightClear()}
+      style={{backgroundImage: `url(${AppointmentPageBG})`}}
+      >
         <form className='orderFormWrapper' onSubmit={handleOrderFormSubmit()}>
           <h2 className='underline'>Order Form</h2>
             <br></br>

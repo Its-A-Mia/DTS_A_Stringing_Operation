@@ -9,7 +9,7 @@ const MenuBanner = (props) => {
       <img className='dtslogo' src={dtslogo} alt='The DTS logo'></img>
         <ul className='menuBtns'>
           <li>
-            <button className='homeBtn' onClick={() => props.setNewPageDestination('home')}>
+            <button className='homeBannerBtn' onClick={() => props.setNewPageDestination('home')}>
               HOME
             </button>
           </li>
@@ -19,7 +19,7 @@ const MenuBanner = (props) => {
             </button>
           </li>
           <li>
-            <button className='infoBtn' onClick={() => props.setNewPageDestination('info')}>
+            <button className='infoBannerBtn' onClick={() => props.setNewPageDestination('info')}>
               INFO
             </button>
           </li>

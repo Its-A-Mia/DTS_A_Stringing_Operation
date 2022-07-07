@@ -26,55 +26,104 @@
   z-index: 2;
 }
 
-.homeBackgroundPicture {
-  display: fixed;
-  position: absolute;
-  width: 1920px;
-  height: 1080px;
-}
-
-.homeInfoTextWrapper {
-  translate: -10px;
+.dtsTitle {
   z-index: 1;
-  display: grid;
-  justify-items: center;
-  padding: 0.5rem 1.7rem 2rem 1.7rem;
-  width: 28%;
-  opacity: 100%;
   height: fit-content;
-  text-align: center;
-  color: white;
-  animation: fadeIn 1.2s;
-  animation-timing-function: ease-in;
+  width: 1046px;
+  z-index: 1;
+  animation: titleSlideInAndMoveUp 2s;
+  animation-fill-mode: forwards;
+  overflow: hidden;
 }
 
-.homeInfoTextBacker {
+.perfectlyTensioned {
+  position: absolute;
+  z-index: 1;
+  transform: rotateX(180deg);
+  margin-top: 55px;
+  height: 60px;
+  width: 429px;
+  overflow: hidden; 
+  animation: pTSlideDown 2s;
+}
+
+.makeAppointmentBtnTennisBallWrapper {
+  z-index: 1;
+  display: flex;
+  position: absolute;
+  margin-top: 400px;
+  transition: all 0.8s;
+  animation: makeAppointmentBtnFadeIn 2.8s;
+  animation-fill-mode: forwards;
+}
+
+.makeAppointmentBtnTennisBallWrapper:hover {
+  transform: scale(1.05);
+}
+
+.makeAppointmentBtnWrapper {
+  position: relative;
+  white-space: nowrap;
+  z-index: 1;
+  overflow: hidden;
+  transition: background-color 0.3s ease-out;
+  animation: makeAppointmentBtnSlideIn 3.8s;
+  animation-fill-mode: forwards;
+}
+
+.makeAppointmentBtnWrapper::before {
+  content: '';
   position: absolute;
   height: 100%;
   width: 100%;
   border-radius: 25px;
-  background: black;
-  opacity: 80%;
+  box-shadow: inset 0 -3px 2px rgb(116, 116, 116),
+              inset 0 3px 2px black;
+  opacity: 100%;
   z-index: -1;
 }
 
 .makeAppointmentBtn {
-  margin-top: 30px;
-  padding: 0.3rem 0.7rem;
+  padding: 0.6rem 0.7rem 0.6rem 2.7rem;
   border: none;
-  height: fit-content;
+  font-size: x-large;
+  font-weight: bold;
+  font-style: italic;
   width: fit-content;
-  font-size: large;
+  background-color: transparent;
   color: white;
   cursor: pointer;
-  background: #A8B826;
-  /* NEW */
-  border-radius: 25px;
-  transition: background-color 0.3s;
 }
 
-.makeAppointmentBtn:hover {
-  background-color: #FF3026;
+.tennisBall {
+  position: absolute; 
+  z-index: 1;
+  height: 50px;
+  width: 50px;
+  transition: all 0.3s;
+  animation: tennisBallMoveLeft 3.8s;
+  animation-fill-mode: forwards;
+}
+
+.glowHome {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  box-shadow: 0 0 150px 13px #d35400;
+  animation: glowing 4.3s;
+  animation-iteration-count: infinite;
+}
+
+
+/* Replaced with new background and info */
+ .homeBackgroundPicture {
+  display: fixed;
+  position: absolute;
+  width: 1920px;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
 }
 
 .homePageLoadingBackground {
@@ -124,11 +173,16 @@
   background: #A8B826;
   /* NEW */
   border-radius: 25px;
-  transition: background-color 0.3s;
+  box-shadow: inset 0 2px 2px rgb(116, 116, 116),
+              inset 0 -2px 2px black;
+  transition: all 0.3s;
+  
 }
 
 .submitAppointmentBtn:hover {
   background-color: #FF3026;
+  box-shadow: inset 0 2px 2px rgb(255, 175, 175),
+              inset 0 -2px 2px black;
 }
 
 .underline {
@@ -168,20 +222,19 @@
 }
 
 .placardWrapper {
-  display: grid;
+  display: flex;
   grid-template-columns: auto auto;
-  column-gap: 10px;;
   position: absolute;
-  justify-content: space-around;
-  height: 628px;
-  width: 977px;
+  height: 100%;
+  width: 100%;
+  transform: translateY(2px);
 }
 
 .flipCard {
   background-color: transparent;
-  height: 305px;
+  height: 100%;
   width: 485px;
-  perspective: 1000px;
+  transition: transform 0.8s;
 }
 
 .flipCardInner {
@@ -189,55 +242,62 @@
   width: 100%;
   height: 100%;
   border: black 10px;
-  text-align: center;
   transform-style: preserve-3d;
-  box-shadow: 0 10px 18px 0 black;
-  transition: transform 0.8s, box-shadow 0.8s;
-}
-
-.flipCard:hover .flipCardInner {
-  transform: rotateX(-180deg);
-  backface-visibility: hidden;
-  box-shadow: none;
+  cursor: pointer;
 }
 
 .flipCardFront, .flipCardBack {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   -webkit-backface-visibility: hidden; /* Safari */
   backface-visibility: hidden;
+  filter: grayscale(70%);
 }
 
 .flipCardFront {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: white;
   opacity: 100%;
   transition: all 0.4s;
 }
 
 .flipCard:hover .flipCardFront {
-  opacity: 0%;
+  filter: grayscale(0%);
 }
 
 .flipCardFront p {
-  margin-top: 30px;
-  padding: 0.3rem 0.7rem;
+  padding: 0.2rem 0.7rem;
   font-size: large;
+  height: 1.5em;
+  width: fit-content;
   font-weight: bold;
   color: white;
-  background: #A8B826;
-  border-radius: 25px;
   letter-spacing: 0.075em;
+  border: 2px solid black;
+}
+
+.flipCardFront p::before {
+  content: '';
+  z-index: -1;
+  padding: 0.2rem 0.7rem;
+  height: 1.8 em;
+  position: absolute;
+  background-color: red;
 }
 
 .flipCardBack {
-  
+  text-align: center;
+  text-shadow: 5px 5px 5px black;
   color: white;
-  transform: rotateX(-180deg);
+  transform: rotateY(-180deg);
 }
+
+.flipCardBack p {
+  padding: 1em;
+} 
 
 .menuBanner {            
   width: 100%;
@@ -246,6 +306,7 @@
   z-index: 3;
   color: white;
   inset: 0 auto auto 0;
+  overflow: hidden;
 }
 
 .menuBannerBacker {
@@ -294,7 +355,42 @@
   z-index: 3;
 }
 
-@keyframes fadeIn {
-  from {opacity: 0%;}
-  to {opacity: 100%;}
+@keyframes titleSlideInAndMoveUp {
+  0% {width: 0;}
+  50% {transform: translateY(0); width: 1046px;}
+  100% {transform: translateY(-25px);}
 }
+
+@keyframes pTSlideDown {
+  0% {height: 0;}
+  50% {height: 0;}
+  100% {height: 60;}
+}
+
+@keyframes makeAppointmentBtnSlideIn {
+  0% {width: 0;}
+  70% {width: 0;}
+  100% {width: 325px;}
+}
+
+@keyframes tennisBallMoveLeft {
+  0% {transform: translateX(-11px); opacity: 0;}
+  60% {opacity: 0;}
+  70% {transform: translateX(-11px); opacity: 1;}
+  100% {transform: translateX(-11px);}
+}
+
+@keyframes glowing {
+  0% {transform: scale(1);}
+  20% {transform: scale(2.5);}
+  50% {transform: scale(1.5);}
+  72% {transform: scale(2.2);}
+  100% {transform: scale(1);}
+}
+
+@keyframes racketFadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+
