@@ -1,396 +1,505 @@
 /*all animations are below class styles*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
 
-.App {
-  width: 100%;
-  height: 100%;
-  inset: 0 0 0 0;
+/* CUSTOM PROPERTIES */
+
+:root {
+  --mousePosX: 0;
+  --mousePosY: 0;
+  /* Phase two */
+  --aptOptionsDisplay: none;
+  /* aptOptionsContainersWidth */
+  --aptOptTopLeftWidth: 70%;
+  --aptOptMiddleLeftWidth: 70%;
+  --aptOptBottomLeftWidth: 70%;
+  --aptOptTopRightWidth: 70%;
+  --aptOptMiddleRightWidth: 70%;
+  --aptOptBottomRightWidth: 70%;
+  /* Inner aptOptions Display */
+  --nameAndContactDisplay: none;
+  --tensionDisplay: none;
+  --stringTypeDisplay: none;
+  --optionalsDisplay: none;
+  --schedulingDisplay: none;
+  --commentsDisplay: none;
+}
+
+/* */
+* {
   overflow: hidden;
+  box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
 
-.menu {
-  z-index: 1;
+/* APP CONTAINER */
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  inset: 0 0 0 0;
+  overflow: hidden;
 }
 
+/* HOME CSS */
 .home {
-  display: flex;
+  position: fixed;
+  display: grid;
+  grid-template-columns: 0.1fr 0.8fr 0.8fr 1.3fr 0.8fr 0.8fr 0.1fr;
+  grid-template-rows: 0.2fr 1fr 1fr 1fr 0.2fr;
+  grid-template-areas: 
+  '. racket racket racket racket racket .'
+  '. racket racket racket racket racket .'
+  '. racket racket racket racket racket .'
+  '. racket racket racket racket racket .'
+  '. racket racket racket racket racket .'
+  ;
+  grid-gap: 0.2rem;
+  height: 100%;
+  width: 100%;
+  inset:  0 0 0 0;
+  overflow: hidden;
+}
+
+.homeBackground {
   position: absolute;
   height: 100%;
   width: 100%;
-  inset:  0 0 0;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  inset:  0 0 0 0;
   overflow: hidden;
-  z-index: 2;
-}
-
-.dtsTitle {
-  z-index: 1;
-  height: fit-content;
-  width: 1046px;
-  z-index: 1;
-  animation: titleSlideInAndMoveUp 2s;
-  animation-fill-mode: forwards;
-  overflow: hidden;
-}
-
-.perfectlyTensioned {
-  position: absolute;
-  z-index: 1;
-  transform: rotateX(180deg);
-  margin-top: 55px;
-  height: 60px;
-  width: 429px;
-  overflow: hidden; 
-  animation: pTSlideDown 2s;
-}
-
-.makeAppointmentBtnTennisBallWrapper {
-  z-index: 1;
-  display: flex;
-  position: absolute;
-  margin-top: 400px;
-  transition: all 0.8s;
-  animation: makeAppointmentBtnFadeIn 2.8s;
-  animation-fill-mode: forwards;
-}
-
-.makeAppointmentBtnTennisBallWrapper:hover {
-  transform: scale(1.05);
-}
-
-.makeAppointmentBtnWrapper {
-  position: relative;
-  white-space: nowrap;
-  z-index: 1;
-  overflow: hidden;
-  transition: background-color 0.3s ease-out;
-  animation: makeAppointmentBtnSlideIn 3.8s;
-  animation-fill-mode: forwards;
-}
-
-.makeAppointmentBtnWrapper::before {
-  content: '';
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  border-radius: 25px;
-  box-shadow: inset 0 -3px 2px rgb(116, 116, 116),
-              inset 0 3px 2px black;
-  opacity: 100%;
+  background-image: url('./images/home-homebackground.png');
+  background-size: cover;
   z-index: -1;
+  transition: filter ease-in 1.5s;
 }
 
-.makeAppointmentBtn {
-  padding: 0.6rem 0.7rem 0.6rem 2.7rem;
-  border: none;
-  font-size: x-large;
-  font-weight: bold;
-  font-style: italic;
-  width: fit-content;
-  background-color: transparent;
-  color: white;
-  cursor: pointer;
-}
+.mainContainer {
+  position: relative;
+  grid-area: racket;
 
-.tennisBall {
-  position: absolute; 
-  z-index: 1;
-  height: 50px;
-  width: 50px;
-  transition: all 0.3s;
-  animation: tennisBallMoveLeft 3.8s;
-  animation-fill-mode: forwards;
-}
-
-.glowHome {
-  z-index: 1;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  box-shadow: 0 0 150px 13px #d35400;
-  animation: glowing 4.3s;
-  animation-iteration-count: infinite;
-}
-
-
-/* Replaced with new background and info */
- .homeBackgroundPicture {
-  display: fixed;
-  position: absolute;
-  width: 1920px;
-  height: 100%;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.homePageLoadingBackground {
-  display: flex;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  inset:  0 0 0;
-  z-index: 1;
-  background-color: black;
-}
-
-.makeAppointmentWrapper {
-  display: flex;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  inset: 0 0 0 0;
   justify-content: center;
-  align-items: center;
-  z-index: 0;
-  overflow: hidden;
-  background-image: url('/src/images/appointmentpagebg.png'); 
 }
 
-.orderFormWrapper {
+/* Phase one */
+
+.racketWrapper {
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  /* All classes until next comment regarding this grid below this class are within it */
+  display: grid;
+  position: relative;
+  margin-top: 70%;
+  grid-template-columns: repeat(11, 1fr);
+  animation: moveRacketIntoFrame 1.5s ease-in-out 1.5s forwards;
+  transition: transform 0.1s, opacity 1s;
+  transform: skew(var(--mousePosX), var(--mousePosY));
+}
+
+.racket {
   display: flex;
-  flex-direction: column;
-  color: white;
-  line-height: 1.5em;
-}
-
-.orderFormWrapper h2 {
+  justify-content: center;
   align-self: center;
+  grid-column: 3 / 10;
+  grid-row: 1;
 }
 
-.submitAppointmentBtn {
-  margin-top: 30px;
-  padding: 0.3rem 0.7rem;
+.racketWrapper img {
+  align-self: center;
+  width: 45%;
+  display: block;
+}
+
+.startBtnWrapper {
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 6;
+  grid-row: 1;
+  z-index: 1;
+}
+
+.startBtn {
+  display: block;
+  justify-content: center;
+  position: relative;
+  background: url('./images/home-racketdampener.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat ;
+  margin-bottom: 57%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 53%;
+  font-size: 0.8vw;
   border: none;
-  align-self: center;
-  height: fit-content;
-  width: fit-content;
-  font-size: large;
-  color: white;
   cursor: pointer;
-  background: #A8B826;
-  /* NEW */
-  border-radius: 25px;
-  box-shadow: inset 0 2px 2px rgb(116, 116, 116),
-              inset 0 -2px 2px black;
-  transition: all 0.3s;
-  
+  transition: transform 0.2s ease-out;
+  animation: bounce 0.8s ease-out 1.2s;
 }
 
-.submitAppointmentBtn:hover {
-  background-color: #FF3026;
-  box-shadow: inset 0 2px 2px rgb(255, 175, 175),
-              inset 0 -2px 2px black;
+.startBtn:hover {
+color: white;
+transform: scale(1.1);
 }
 
-.underline {
-  text-decoration: underline;
-}
+/* Phase two */
 
-.appointmentRacketWrapper {   
- margin-left: 150px;
-}
-
-.appointmentRacketWrapper img {
+.greeting {
   display: none;
-  transform: translateY(94px);
-  height: 100%;
+  align-self: center;
+  justify-self: center;
+  color: white;
+  font-size: 2vw;
+  grid-column: 3 / 6;
+  grid-row: 3;
+  animation: fadeIn 1s ease-in alternate;
+  transition: opacity 1s;
 }
 
-.infoWrapper {
-  display: flex;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  inset: 0 0 0 0;
+/* #aptOptions = all apt container divs together */
+
+#aptOptions {
+  position: relative;
+  display: var(--aptOptionsDisplay);
+  height: auto;
+  align-self: center;
+  justify-self: center;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
-  z-index: 0;
-  overflow: hidden;
   color: white;
-  background: black;
+  opacity: 0;
+  transition: width 0.7s;
 }
 
-.infoBackgroundPicture {
-  display: fixed;
-  position: absolute;
-  width: 1920px;
-  height: 1080px;
-}
+/* button to open options */
 
-.placardWrapper {
-  display: flex;
-  grid-template-columns: auto auto;
-  position: absolute;
-  height: 100%;
+.aptOptionsBtn {
   width: 100%;
-  transform: translateY(2px);
-}
-
-.flipCard {
-  background-color: transparent;
-  height: 100%;
-  width: 485px;
-  transition: transform 0.8s;
-}
-
-.flipCardInner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: black 10px;
-  transform-style: preserve-3d;
   cursor: pointer;
-}
-
-.flipCardFront, .flipCardBack {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
-  backface-visibility: hidden;
-  filter: grayscale(70%);
-}
-
-.flipCardFront {
+  border: none;
+  font-size: 0.7vw;
   color: white;
-  opacity: 100%;
-  transition: all 0.4s;
+  background: none;
 }
 
-.flipCard:hover .flipCardFront {
-  filter: grayscale(0%);
+/* individual aptOptionsWrapper divs */
+
+.appointmentOptionsTopLeft {
+  width: var(--aptOptTopLeftWidth);
+  grid-column: 3;
+  grid-row: 2;
+  animation: fadeIn 1s ease-out forwards;
 }
 
-.flipCardFront p {
-  padding: 0.2rem 0.7rem;
-  font-size: large;
-  height: 1.5em;
-  width: fit-content;
-  font-weight: bold;
-  color: white;
-  letter-spacing: 0.075em;
-  border: 2px solid black;
-}
-
-.flipCardFront p::before {
+.appointmentOptionsTopLeft::before {
   content: '';
-  z-index: -1;
-  padding: 0.2rem 0.7rem;
-  height: 1.8 em;
   position: absolute;
-  background-color: red;
-}
-
-.flipCardBack {
-  text-align: center;
-  text-shadow: 5px 5px 5px black;
-  color: white;
-  transform: rotateY(-180deg);
-}
-
-.flipCardBack p {
-  padding: 1em;
-} 
-
-.menuBanner {            
   width: 100%;
-  position: absolute;
-  display: flex;
-  z-index: 3;
-  color: white;
-  inset: 0 auto auto 0;
-  overflow: hidden;
-}
-
-.menuBannerBacker {
-  position: absolute;
   height: 100%;
-  width: 100%;
-  background: rgb(75, 75, 75);
-  opacity: 80%;
+  background-color: #C33426;
+  border-radius: 15px;
   z-index: -1;
+  transform: skew(-20deg);
 }
 
-.menuBtns {
-  display: flex;
-  position: relative;
-  gap: 12px;
+.appointmentOptionsMiddleLeft {
+  width: var(--aptOptMiddleLeftWidth);
+  grid-column: 2;
+  grid-row: 3;
+  animation: fadeIn 1s ease-out forwards 0.2s;
+  background-color: #C33426;
+  border-radius: 15px;
+}
+
+.appointmentOptionsBottomLeft {
+  width: var(--aptOptBottomLeftWidth);
+  grid-column: 3;
+  grid-row: 4;
+  animation: fadeIn 1s ease-out forwards 0.4s;
+}
+
+.appointmentOptionsBottomLeft::before {
+  content: '';
+  position: absolute;
   width: 100%;
-  align-items: center;
-  justify-content: center;
-  translate: -133px;
-  list-style: none;
+  height: 100%;
+  background-color: #C33426;
+  border-radius: 15px;
+  z-index: -1;
+  transform: skew(20deg);
 }
 
-.menuBtns button {
+.appointmentOptionsTopRight {
+  width: var(--aptOptTopRightWidth);
+  grid-column: 5;
+  grid-row: 2;
+  animation: fadeIn 1s ease-out forwards 1s;
+}
+
+.appointmentOptionsTopRight::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #C33426;
+  border-radius: 15px;
+  z-index: -1;
+  transform: skew(20deg);
+}
+
+.appointmentOptionsMiddleRight {
+  width: var(--aptOptMiddleRightWidth);
+  grid-column: 6;
+  grid-row: 3;
+  background-color: #C33426;
+  border-radius: 15px;
+
+  animation: fadeIn 1s ease-out forwards 0.8s;
+}
+
+.appointmentOptionsBottomRight {
+  width: var(--aptOptBottomRightWidth);
+  grid-column: 5;
+  grid-row: 4;
+  animation: fadeIn 1s ease-out forwards 0.6s;
+}
+
+.appointmentOptionsBottomRight::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #C33426;
+  border-radius: 15px;
+
+  z-index: -1;
+  transform: skew(-20deg);
+}
+/* all inner content divs */
+
+#aptOptionsInner {
+  width: 100%;
+  height: 100%;
+  padding: 0.4em 0.4em;
+  font-size: 0.6vw;
+  color: black;
+  background: white;
+}
+
+/* individual inner content divs */
+
+.nameAndContact {
+  display: var(--nameAndContactDisplay);
+}
+
+.tension {
+  display: var(--tensionDisplay);
+}
+
+.stringType {
+  display: var(--stringTypeDisplay);
+}
+
+.optionals {
+  display: var(--optionalsDisplay);
+}
+
+.scheduling {
+  display: var(--schedulingDisplay);
+}
+
+.comments {
+  display: var(--commentsDisplay);
+}
+
+/* All above classes are within .racketWrapper grid */
+
+/* MENU BANNER CSS */
+.menuBanner {
+  display: grid;
+  inset:  0 auto auto 0;
+  position: absolute;
+  grid-template-columns: auto auto;
+  z-index: 1;
+  align-items: center;
+  max-height: fit-content;
+  width: 100%;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  max-width: 70px;
+  transition: transform 0.5s ease-out;
+}
+
+.logo:hover {
+transform: rotate(360deg);
+
+}
+
+.DTS {
+  max-height: 25px;
+  transition: 0.3s ease-out;
+}
+
+.DTS:hover {
+  transform: scale(1.03);
+}
+
+.infoButtonWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.infoButton {
+  margin: 20px;
+  max-width: 100px;
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 0.4rem 1rem;
   color: white;
-  font-weight: bold;
-  font-size: large;
-  /* NEW */
-  border-radius: 25px;
-  letter-spacing: 0.1em;
-  transition: all .3s;
-}
-
-.menuBtns button:hover {
-  background-color: black;
-  /* font-size: larger; */
-  color: #D9E802;
-}
-
-.dtslogo {
-  width: 200px;
+  font-size: larger;
   cursor: pointer;
-  z-index: 3;
+  transition: color 0.3s;
 }
 
-@keyframes titleSlideInAndMoveUp {
-  0% {width: 0;}
-  50% {transform: translateY(0); width: 1046px;}
-  100% {transform: translateY(-25px);}
+.infoButton:hover {
+  color: #da564a;
 }
 
-@keyframes pTSlideDown {
-  0% {height: 0;}
-  50% {height: 0;}
-  100% {height: 60;}
+/* TABLET RWD BEGINS */
+@media only screen and (max-width: 810px) {
+  
+  .home {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 1fr 1fr 1fr 0.2fr;
+    grid-template-areas: 
+    'racket' 
+    'racket'
+    'racket'
+    'racket'
+    'racket'
+    ;
+    grid-gap: 0.2rem;
+  }
+  
+  .racketWrapper {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  .racket {
+    justify-self: center;
+    align-self: center;
+    width: 236%;
+    height: 100%;
+  }
+  
+  .startBtnWrapper {
+    grid-column: 5 / 8;
+  }
+   
+  .startBtn {
+    width: 53%;
+    margin-bottom: 42%;
+    font-size: 2vw;
+  }
+  
+  .greeting {
+    grid-column: 1;
+    grid-row: 3;
+    font-size: 4vw;
+  }
+
 }
 
-@keyframes makeAppointmentBtnSlideIn {
-  0% {width: 0;}
-  70% {width: 0;}
-  100% {width: 325px;}
+/* MOBILE RWD BEGINS */
+@media only screen and (max-width: 428px) {
+
+  /* HOME CSS */
+
+.home {
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 1fr 1fr 1fr 0.2fr;
+  grid-template-areas: 
+  'racket' 
+  'racket'
+  'racket'
+  'racket'
+  'racket'
+  ;
+  grid-gap: 0.2rem;
 }
 
-@keyframes tennisBallMoveLeft {
-  0% {transform: translateX(-11px); opacity: 0;}
-  60% {opacity: 0;}
-  70% {transform: translateX(-11px); opacity: 1;}
-  100% {transform: translateX(-11px);}
+.racketWrapper {
+  animation: fadeIn 1s ease-out forwards;
 }
 
-@keyframes glowing {
+.racket {
+  justify-self: center;
+  align-self: center;
+  width: 330%;
+  height: 100%;
+}
+
+.startBtnWrapper {
+  grid-column: 5 / 8;
+}
+ 
+.startBtn {
+  width: 75%;
+  margin-bottom: 63%;
+  font-size: 3vw;
+}
+
+.greeting {
+  grid-column: 1;
+  grid-row: 3;
+  font-size: 4vw;
+}
+
+  /* MENU BANNER CSS */
+
+  .DTS {
+    display: none;
+    max-height: 25px;
+  }
+
+}
+
+
+
+/*  ANIMATIONS BEGIN */
+
+/* Phase one */
+/* start button */
+
+@keyframes bounce {
   0% {transform: scale(1);}
-  20% {transform: scale(2.5);}
-  50% {transform: scale(1.5);}
-  72% {transform: scale(2.2);}
+  40% {transform: scale(1.2);}
   100% {transform: scale(1);}
 }
 
-@keyframes racketFadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+/* racket */
+
+@keyframes moveRacketIntoFrame {
+  0% {margin-top: 70%;}
+  100% {margin-top: 0%;}
 }
 
+/* Phase two */
+/* greeting */
 
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 100;}
+}
+
+@keyframes rollDown {
+  0% {height: 0;}
+  100% {height: 90%;}
+}

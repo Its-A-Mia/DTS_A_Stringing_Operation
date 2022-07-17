@@ -1,30 +1,17 @@
 import React from 'react'
-import dtslogo from '../images/dtslogo.png'
+import Logo from '../images/menuBanner-logo.png'
+import DTS from '../images/menuBanner-denvertennisstringing.png'
 
-
-const MenuBanner = (props) => {
-
+const MenuBanner = () => {
   return (
     <div className='menuBanner'>
-      <img className='dtslogo' src={dtslogo} alt='The DTS logo'></img>
-        <ul className='menuBtns'>
-          <li>
-            <button className='homeBannerBtn' onClick={() => props.setNewPageDestination('home')}>
-              HOME
-            </button>
-          </li>
-          <li> 
-            <button className='makeAptBannerBtn' onClick={() => props.setNewPageDestination('makeAppointment')}>
-              MAKE APPOINTMENT
-            </button>
-          </li>
-          <li>
-            <button className='infoBannerBtn' onClick={() => props.setNewPageDestination('info')}>
-              INFO
-            </button>
-          </li>
-        </ul>
-      <div className='menuBannerBacker'></div> 
+        <div className='logoWrapper'>
+            <img className='logo' src={Logo} alt=''></img>
+            <img className='DTS' src={DTS} alt=''></img>
+        </div>
+        <div className='infoButtonWrapper'>
+            <button className='infoButton'>info</button>
+        </div>
     </div>
   )
 }
