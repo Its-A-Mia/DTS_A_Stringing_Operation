@@ -8,20 +8,22 @@
   --mousePosY: 0;
   /* Phase two */
   --aptOptionsDisplay: none;
-  /* aptOptionsContainersWidth */
-  --aptOptTopLeftWidth: 70%;
-  --aptOptMiddleLeftWidth: 70%;
-  --aptOptBottomLeftWidth: 70%;
-  --aptOptTopRightWidth: 70%;
-  --aptOptMiddleRightWidth: 70%;
-  --aptOptBottomRightWidth: 70%;
   /* Inner aptOptions Display */
   --nameAndContactDisplay: none;
   --tensionDisplay: none;
-  --stringTypeDisplay: none;
+  --stringTypeDisplay: flex;
   --optionalsDisplay: none;
   --schedulingDisplay: none;
   --commentsDisplay: none;
+  --reviewAndSubmitDisplay: none;
+  /* changeAptBtns color */
+  --nameAndContactColor: 'white';
+  --tensionColor: 'white';
+  --stringTypeColor: 'white';
+  --optionalsColor: 'white';
+  --schedulingColor: 'white';
+  --commentsColor: 'white';
+  --reviewAndSubmitColor: 'white';
 }
 
 /* */
@@ -44,15 +46,8 @@
 .home {
   position: fixed;
   display: grid;
-  grid-template-columns: 0.1fr 0.8fr 0.8fr 1.3fr 0.8fr 0.8fr 0.1fr;
-  grid-template-rows: 0.2fr 1fr 1fr 1fr 0.2fr;
-  grid-template-areas: 
-  '. racket racket racket racket racket .'
-  '. racket racket racket racket racket .'
-  '. racket racket racket racket racket .'
-  '. racket racket racket racket racket .'
-  '. racket racket racket racket racket .'
-  ;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
   grid-gap: 0.2rem;
   height: 100%;
   width: 100%;
@@ -74,8 +69,8 @@
 
 .mainContainer {
   position: relative;
-  grid-area: racket;
-
+  grid-column: 2 / 12;
+  grid-row: 1 / 13;
   justify-content: center;
 }
 
@@ -143,177 +138,144 @@ color: white;
 transform: scale(1.1);
 }
 
+/* All above classes are within .racketWrapper grid */
+
 /* Phase two */
 
 .greeting {
   display: none;
-  align-self: center;
-  justify-self: center;
   color: white;
   font-size: 2vw;
-  grid-column: 3 / 6;
-  grid-row: 3;
+  justify-self: center;
+  grid-column: 5 / 9;
+  grid-row: 7;
   animation: fadeIn 1s ease-in alternate;
   transition: opacity 1s;
 }
 
-/* #aptOptions = all apt container divs together */
+/* All Apt Options */
 
-#aptOptions {
-  position: relative;
-  display: var(--aptOptionsDisplay);
-  height: auto;
-  align-self: center;
+.appointmentOptionsContainer {
+  grid-column: 3 / 11;
+  grid-row: 6 / 13;
+  width: 80%;
+  height: 40%;
   justify-self: center;
-  justify-content: center;
+  align-self: flex-end;
+  display: var(--aptOptionsDisplay); 
   flex-direction: column;
-  color: white;
-  opacity: 0;
-  transition: width 0.7s;
+  border-radius: 10px 10px 0 0;
+  background: #C33426;
+  padding-left: 10px;
+  padding-right: 10px;
+  animation: moveOptionsIntoFrame 0.8s forwards;
 }
 
-/* button to open options */
+/* All Option Buttons */
 
-.aptOptionsBtn {
+.changeOptionBtnsWrapper {
+  display: flex;
   width: 100%;
-  cursor: pointer;
+  height: auto;
+  justify-content: center;
+  font-size: 0.82vw;
+  padding: 5px 5px 10px 5px;
+  color: white;
+  z-index: 1;
+}
+
+/* changeAptOptionBtn */
+
+.changeOptionBtnsWrapper button {
   border: none;
-  font-size: 0.7vw;
-  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: inherit;
+  padding-bottom: 5px;
   background: none;
+  transition: color 0.3s;
 }
 
-/* individual aptOptionsWrapper divs */
+.changeOptionBtnsWrapper button:hover {color: black;}
 
-.appointmentOptionsTopLeft {
-  width: var(--aptOptTopLeftWidth);
-  grid-column: 3;
-  grid-row: 2;
-  animation: fadeIn 1s ease-out forwards;
-}
+/* individual buttons */
 
-.appointmentOptionsTopLeft::before {
-  content: '';
-  position: absolute;
+.stringTypeOptnBtn {color: var(--stringTypeColor);}
+
+.tensionOptnBtn {color: var(--tensionColor);}
+
+.optionalsOptnBtn {color: var(--optionalsColor);}
+
+.nameAndContactOptnBtn {color: var(--nameAndContactColor);}
+
+.schedulingOptnBtn {color: var(--schedulingColor);}
+
+.commentsOptnBtn {color: var(--commentsColor);}
+
+.reviewAndSubmitOptnBtn {color: var(--reviewAndSubmitColor)}
+
+/* All options wrappers */
+
+#aptOptionWrapper {
   width: 100%;
   height: 100%;
-  background-color: #C33426;
-  border-radius: 15px;
-  z-index: -1;
-  transform: skew(-20deg);
+  padding-top: 2px;
+  text-align: center;
+  background: white;
+  border-radius: 10px 10px 0 0;
+  z-index: 1;
 }
 
-.appointmentOptionsMiddleLeft {
-  width: var(--aptOptMiddleLeftWidth);
-  grid-column: 2;
-  grid-row: 3;
-  animation: fadeIn 1s ease-out forwards 0.2s;
-  background-color: #C33426;
-  border-radius: 15px;
+#aptOptionWrapper h3 {
+  align-self: center;
+  font-size: 1.2vw;
+  width: fit-content;
+  margin: 3px 0 0 0;
+  padding: 2px 0 2px 0;
 }
 
-.appointmentOptionsBottomLeft {
-  width: var(--aptOptBottomLeftWidth);
-  grid-column: 3;
-  grid-row: 4;
-  animation: fadeIn 1s ease-out forwards 0.4s;
-}
+/* Individual Options Wrappers general styling; more styling done in-line in the individual component child divs in order to reduce clutter on stylesheet*/
 
-.appointmentOptionsBottomLeft::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #C33426;
-  border-radius: 15px;
-  z-index: -1;
-  transform: skew(20deg);
-}
+.stringTypeWrapper {display: var(--stringTypeDisplay);}
 
-.appointmentOptionsTopRight {
-  width: var(--aptOptTopRightWidth);
-  grid-column: 5;
-  grid-row: 2;
-  animation: fadeIn 1s ease-out forwards 1s;
-}
+.tensionWrapper {display: var(--tensionDisplay);}
 
-.appointmentOptionsTopRight::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #C33426;
-  border-radius: 15px;
-  z-index: -1;
-  transform: skew(20deg);
-}
+.optionalsWrapper {display: var(--optionalsDisplay);}
 
-.appointmentOptionsMiddleRight {
-  width: var(--aptOptMiddleRightWidth);
-  grid-column: 6;
-  grid-row: 3;
-  background-color: #C33426;
-  border-radius: 15px;
+.nameAndContactWrapper {display: var(--nameAndContactDisplay);}
 
-  animation: fadeIn 1s ease-out forwards 0.8s;
-}
+.schedulingWrapper {display: var(--schedulingDisplay);}
 
-.appointmentOptionsBottomRight {
-  width: var(--aptOptBottomRightWidth);
-  grid-column: 5;
-  grid-row: 4;
-  animation: fadeIn 1s ease-out forwards 0.6s;
-}
+.commentsWrapper {display: var(--commentsDisplay);}
 
-.appointmentOptionsBottomRight::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: #C33426;
-  border-radius: 15px;
+.reviewAndSubmitWrapper {display: var(--reviewAndSubmitDisplay);}
 
-  z-index: -1;
-  transform: skew(-20deg);
-}
-/* all inner content divs */
+/* all options inner content */
 
 #aptOptionsInner {
+  display: flex;
+  font-size: 0.83vw;
+  flex-flow: column wrap; 
   width: 100%;
   height: 100%;
-  padding: 0.4em 0.4em;
-  font-size: 0.6vw;
-  color: black;
-  background: white;
 }
 
-/* individual inner content divs */
+/* next and back btns */
 
-.nameAndContact {
-  display: var(--nameAndContactDisplay);
+.backNextBtns {
+  font-size: 3vw;
+  background: none;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+  opacity: 50%;
+  transition: opacity 0.2s;
 }
 
-.tension {
-  display: var(--tensionDisplay);
+.backNextBtns:hover {
+  opacity: 100%;
 }
 
-.stringType {
-  display: var(--stringTypeDisplay);
-}
-
-.optionals {
-  display: var(--optionalsDisplay);
-}
-
-.scheduling {
-  display: var(--schedulingDisplay);
-}
-
-.comments {
-  display: var(--commentsDisplay);
-}
-
-/* All above classes are within .racketWrapper grid */
 
 /* MENU BANNER CSS */
 .menuBanner {
@@ -499,7 +461,7 @@ transform: rotate(360deg);
   100% {opacity: 100;}
 }
 
-@keyframes rollDown {
-  0% {height: 0;}
-  100% {height: 90%;}
+@keyframes moveOptionsIntoFrame {
+  0% {transform: translateY(220px);}
+  100% {transform: translateY(0px);}
 }

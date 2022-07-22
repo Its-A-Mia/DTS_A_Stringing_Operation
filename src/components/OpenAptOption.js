@@ -2,18 +2,19 @@ import React from 'react'
 
 const OpenAptOption = (props) => {
 
-    const handleAptOptionsBtnClick = () => {
-        // make button take up less room, show section
-        const aptOptionsBtnWrapper = document.getElementById('aptOptionsBtnWrapper')
-        aptOptionsBtnWrapper.style.height = '10%'
-        document.documentElement.style.setProperty(props.newWidthProperty, `${100}%`)
-        document.documentElement.style.setProperty(props.newDisplayProperty, 'block')
-    }
+ const handleAptOptionsBtnClick = () => {
+  for (let i = 0; i < props.displayNoneArr.length; i++) {
+    document.documentElement.style.setProperty(props.displayNoneArr[i], 'none')
+    document.documentElement.style.setProperty(props.unfocusArr[i], 'white')
+  }
+  document.documentElement.style.setProperty(props.display, 'flex')
+  document.documentElement.style.setProperty(props.toFocus, 'black')
+ } 
 
   return (
-    <div style={{width: '100%', height: '100%', alignSelf: 'center'}} id='aptOptionsBtnWrapper'>
-      <button className='aptOptionsBtn' onClick={e => handleAptOptionsBtnClick()}>
-        <h3>{props.title}</h3>
+    <div style={{color: props.initialColor}}>
+      <button className={props.btnClassName} onClick={e => handleAptOptionsBtnClick()}>
+        {props.title}
       </button>
     </div>
   )

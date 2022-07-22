@@ -8,6 +8,10 @@ import Optionals from './Optionals'
 import Scheduling from './Scheduling'
 import StartBtn from './StartBtn'
 import StringType from './StringType'
+import BackBtn from './BackBtn'
+import NextBtn from './NextBtn'
+import ReviewAndSubmit from './ReviewAndSubmit'
+
 
 
 const Home = (props) => {
@@ -72,60 +76,188 @@ const Home = (props) => {
       
       {/* Phase two */}
       <div className='greeting' id='greeting'>Let's set up an appointment</div>
-
-      <div className='appointmentOptionsTopLeft' id='aptOptions'>
-        <OpenAptOption 
-          title='Contact Information' 
-          newDisplayProperty='--nameAndContactDisplay' 
-          newWidthProperty='--aptOptTopLeftWidth'
-        />
-        <NameAndContact/>
-      </div>
-
-      <div className='appointmentOptionsMiddleLeft' id='aptOptions'>
-        <OpenAptOption 
-          title='Tension' 
-          newDisplayProperty='--tensionDisplay' 
-          newWidthProperty='--aptOptMiddleLeftWidth'
-        />
-        <Tension/>
-      </div>
-
-      <div className='appointmentOptionsBottomLeft' id='aptOptions'>
-        <OpenAptOption 
-        title='String Type'
-        newDisplayProperty='--stringTypeDisplay' 
-        newWidthProperty='--aptOptBottomLeftWidth'
-        />
-        <StringType/>
-      </div>
-
-      <div className='appointmentOptionsTopRight' id='aptOptions'>  
-        <OpenAptOption 
-          title='Optionals'
-          newDisplayProperty='--optionalsDisplay' 
-          newWidthProperty='--aptOptTopRightWidth'/>
-        <Optionals/>
-      </div>
-
-      <div className='appointmentOptionsMiddleRight' id='aptOptions'>
-        <OpenAptOption 
-          title='Scheduling'
-          newDisplayProperty='--schedulingDisplay' 
-          newWidthProperty='--aptOptMiddleRightWidth' 
-        />
-        <Scheduling/>
-      </div>
-
-      <div className='appointmentOptionsBottomRight' id='aptOptions'>
-        <OpenAptOption 
-          title='Comments'
-          newDisplayProperty='--commentsDisplay' 
-          newWidthProperty='--aptOptBottomRightWidth'
-        />
-        <ExtraComments/>
-      </div>
       
+      {/* Houses all necessary mechanisms for Options */}
+      <div className='appointmentOptionsContainer'>
+
+        {/* Houses buttons to navigate optiions */}
+        <div className='changeOptionBtnsWrapper'>
+          {/* passing props into OpenAptOption: className, titles, which displays to turn to 'none', which option buttons to focus (changes color to black). Initial Color is the landing option */}
+          <OpenAptOption
+            btnClassName='stringTypeOptnBtn'
+            title='String Type'
+            displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+            unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
+            display='--stringTypeDisplay'
+            toFocus='--stringTypeColor'
+            initialColor='black'
+          />
+          {'>'}
+          <OpenAptOption
+            btnClassName='tensionOptnBtn'
+            title='Tension'
+            displayNoneArr={['--stringTypeDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+            unfocusArr={['--nameAndContactColor', '--stringTypeColor', '--optonalsColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
+            display='--tensionDisplay'
+            toFocus='--tensionColor'
+          />
+          {'>'}
+          <OpenAptOption
+            btnClassName='optionalsOptnBtn'
+            title='Optionals'
+            displayNoneArr={['--tensionDisplay', '--stringTypeDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+            unfocusArr={['--nameAndContactColor', '--tensionColor', '--stringTypeColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
+            display='--optionalsDisplay'
+            toFocus='--optionalsColor'
+          />
+          {'>'}
+          <OpenAptOption
+            btnClassName='nameAndContactOptnBtn'
+            title='Contact Information'
+            displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--stringTypeDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+            unfocusArr={['--stringTypeColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
+            display='--nameAndContactDisplay'
+            toFocus='--nameAndContactColor'
+          />
+          {'>'}
+          <OpenAptOption
+            btnClassName='schedulingOptnBtn'
+            title='Scheduling'
+            displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--stringTypeDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+            unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--stringTypeColor', '--commentsColor', '--reviewAndSubmitColor']}
+            display='--schedulingDisplay'
+            toFocus='--schedulingColor'
+          />
+          {'>'}
+          <OpenAptOption
+            btnClassName='commentsOptnBtn'
+            title='Special Requests'
+            displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--stringTypeDisplay', '--reviewAndSubmitDisplay']}
+            unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--stringTypeColor', '--reviewAndSubmitColor']}
+            display='--commentsDisplay'
+            toFocus='--commentsColor'
+          />
+          {'>'}
+          {'>'}
+          <OpenAptOption
+          btnClassName='reviewAndSubmitOptnBtn'
+          title='Review & Submit'
+          displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--stringTypeDisplay', '--commentsDisplay']}
+          unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--stringTypeColor', '--commentsColor']}
+          display='--reviewAndSubmitDisplay'
+          toFocus='--reviewAndSubmitColor'
+          />
+        </div>
+
+
+        {/* Houses the option content; composed of three main components */}
+        <div className='stringTypeWrapper' id='aptOptionWrapper'>
+          <BackBtn 
+            toFocus='--reviewAndSubmitColor'
+            previousOption='--reviewAndSubmitDisplay' 
+            currentOption='--stringTypeDisplay'
+            unfocus='--stringTypeColor'
+          />
+          <StringType/>
+          <NextBtn 
+            toFocus='--tensionColor'
+            nextOption='--tensionDisplay'
+            currentOption='--stringTypeDisplay'
+            unfocus='--stringTypeColor'
+          />
+        </div>
+        <div className='tensionWrapper' id='aptOptionWrapper'>
+          <BackBtn
+            toFocus='--stringTypeColor'
+            previousOption='--stringTypeDisplay'
+            currentOption='--tensionDisplay'
+            unfocus='--tensionColor'
+          />
+          <Tension/>
+          <NextBtn 
+            toFocus='--optionalsColor'
+            nextOption='--optionalsDisplay'
+            currentOption='--tensionDisplay'
+            unfocus='--tensionColor'
+          />
+        </div>
+        <div className='optionalsWrapper' id='aptOptionWrapper'>
+          <BackBtn 
+            toFocus='--tensionColor'
+            previousOption='--tensionDisplay'
+            currentOption='--optionalsDisplay'
+            unfocus='--optionalsColor'
+          />
+          <Optionals/>
+          <NextBtn 
+            toFocus='--nameAndContactColor'
+            nextOption='--nameAndContactDisplay'
+            currentOption='--optionalsDisplay'
+            unfocus='--optionalsColor'
+          />
+        </div>
+        <div className='nameAndContactWrapper' id='aptOptionWrapper'>
+          <BackBtn 
+            toFocus='--optionalsColor'
+            previousOption='--optionalsDisplay'
+            currentOption='--nameAndContactDisplay'
+            unfocus='--nameAndContactColor'
+          />
+          <NameAndContact/>
+          <NextBtn 
+            toFocus='--schedulingColor'
+            nextOption='--schedulingDisplay'
+            currentOption='--nameAndContactDisplay'  
+            unfocus='--nameAndContactColor'
+          />
+        </div>
+        <div className='schedulingWrapper' id='aptOptionWrapper'>
+          <BackBtn 
+            toFocus='--nameAndContactColor'
+            previousOption='--nameAndContactDisplay'
+            currentOption='--schedulingDisplay'  
+            unfocus='--schedulingColor'
+          />
+          <Scheduling/>
+          <NextBtn 
+            toFocus='--commentsColor'
+            nextOption='--commentsDisplay'
+            currentOption='--schedulingDisplay'  
+            unfocus='--schedulingColor'
+          />
+        </div> 
+        <div className='commentsWrapper' id='aptOptionWrapper'> 
+          <BackBtn 
+            toFocus='--schedulingColor'
+            previousOption='--schedulingDisplay'
+            currentOption='--commentsDisplay'  
+            unfocus='--commentsColor'
+          />
+          <ExtraComments/>
+          <NextBtn 
+            toFocus='--reviewAndSubmitColor'
+            nextOption='--reviewAndSubmitDisplay'
+            currentOption='--commentsDisplay'
+            unfocus='--commentsColor'
+          />
+        </div>
+        <div className='reviewAndSubmitWrapper' id='aptOptionWrapper'>
+          <BackBtn
+            toFocus='--commentsColor'
+            previousOption='--commentsDisplay' 
+            currentOption='--reviewAndSubmitDisplay'
+            unfocus='--reviewAndSubmitColor'
+          />
+          <ReviewAndSubmit/>
+          <NextBtn
+            toFocus='--stringTypeColor'
+            nextOption='--stringTypeDisplay'
+            currentOption='--reviewAndSubmitDisplay'
+            unfocus='--reviewAndSubmitColor'
+          />
+        </div>
+      </div>
+
     </div>
   )
 }

@@ -20,14 +20,22 @@ const Scheduling = () => {
 
   return (
     <div className='scheduling' id='aptOptionsInner'>
-      <fieldset>
-              <label>Date of Drop-off: </label>
-              <input type='date' min={`${minDate}`} max={`${maxDate}`} required></input>
-                <br></br>
-              <label>Date of Pick-up: </label>
-              <input type='date' min={`${minDate}`} required></input>
-                <br></br>
-          </fieldset>
+      <div style={{display: 'flex', justifyContent:'center', alignItems: 'center'}}>
+        <h3 style={{flexGrow: '0.2'}}>Scheduling</h3>
+        <span style={{color: 'darkgray'}}>5/6</span>
+      </div>
+
+      <div style={{display: 'flex', flexDirection: 'column', flexGrow: '1'}}>
+        <div>
+          <label>Date of Drop-off: </label>
+          <input type='date' min={`${minDate}`} max={`${maxDate}`} required></input>
+        </div>
+
+        <div>
+          <label>Date of Pick-up: </label>
+          <input type='date' min={`${minDate}`} required></input>
+        </div>
+      </div>
     </div>
   )
 }

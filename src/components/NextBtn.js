@@ -1,8 +1,19 @@
 import React from 'react'
 
-const NextBtn = () => {
+const NextBtn = (props) => {
+
+  const handleNextBtnClick = () => {
+    document.documentElement.style.setProperty(props.unfocus, 'white')
+    document.documentElement.style.setProperty(props.currentOption, 'none')
+    document.documentElement.style.setProperty(props.nextOption, 'flex')
+    document.documentElement.style.setProperty(props.toFocus, 'black')
+  }
+
   return (
-    <div>NextBtn</div>
+    <button className='backNextBtns' onClick={e => handleNextBtnClick()}>
+      {'>'}
+    </button>
+
   )
 }
 
