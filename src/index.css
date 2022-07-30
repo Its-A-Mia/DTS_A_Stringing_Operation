@@ -8,6 +8,8 @@
   --mousePosY: 0;
   /* Phase two */
   --aptOptionsDisplay: none;
+  /* control btn position */
+  --reviewAndSubmitBtnBottom: 24%;
   /* Inner aptOptions Display */
   --nameAndContactDisplay: none;
   --tensionDisplay: none;
@@ -23,7 +25,9 @@
   --optionalsColor: 'white';
   --schedulingColor: 'white';
   --commentsColor: 'white';
-  --reviewAndSubmitColor: 'white';
+  /* height control */
+  --aptOptionHeight: 25%;
+  --aptBackerHeight: 26%;
 }
 
 /* */
@@ -83,9 +87,9 @@
   /* All classes until next comment regarding this grid below this class are within it */
   display: grid;
   position: relative;
-  margin-top: 70%;
+  margin-top: 120%;
   grid-template-columns: repeat(11, 1fr);
-  animation: moveRacketIntoFrame 1.5s ease-in-out 1.5s forwards;
+  animation: moveRacketIntoFrame 1.5s ease-in-out 1s forwards;
   transition: transform 0.1s, opacity 1s;
   transform: skew(var(--mousePosX), var(--mousePosY));
 }
@@ -157,21 +161,31 @@ transform: scale(1.1);
 
 .appointmentOptionsContainer {
   grid-column: 3 / 11;
-  grid-row: 6 / 13;
-  width: 80%;
-  height: 40%;
+  grid-row: 4 / 13;
+  width: 65%;
+  height: 100%;
   justify-self: center;
   align-self: flex-end;
   display: var(--aptOptionsDisplay); 
   flex-direction: column;
-  border-radius: 10px 10px 0 0;
-  background: #C33426;
-  padding-left: 10px;
-  padding-right: 10px;
+  position: relative;
   animation: moveOptionsIntoFrame 0.8s forwards;
 }
 
-/* All Option Buttons */
+/* Colored backer for the options */
+
+.appointmentOptionsBacker {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: var(--aptBackerHeight);
+  border-radius: 10px 10px 0 0;
+  background: radial-gradient(circle, rgba(195,52,38,1) 0%, rgba(241,102,58,1) 100%);
+  transition: height 0.8s;
+  animation: hideAptOptionsMenu 2.2s alternate;
+}
+
+/* All Option Buttons Wrapper */
 
 .changeOptionBtnsWrapper {
   display: flex;
@@ -179,16 +193,48 @@ transform: scale(1.1);
   height: auto;
   justify-content: center;
   font-size: 0.82vw;
+  margin-top: 7px;
   padding: 5px 5px 10px 5px;
   color: white;
   z-index: 1;
 }
 
+/* open apt options btn menu */
+
+#openAptOptionsMenuBtn {
+  position: absolute;
+  width: 4%;
+  height: auto;
+  top: 6%;
+  right: 10%;
+  z-index: 2;
+  color: gray;
+  text-align: center;
+  font-size: 0.8vw;
+  background: none;
+  border: solid gray 2px;
+  border-radius: 50%;
+  transition: color 0.3s, border 0.3s;
+  cursor: pointer;
+}
+
+#openAptOptionsMenuBtn:hover {
+  color: black;
+  border: solid black 2px;
+}
+
+#openAptOptionsMenuBtn:active {
+  transform: rotateX(45deg);
+}
+
+.bouncyButton {
+  animation: bouncyButton 0.4s ease-out;
+}
+
 /* changeAptOptionBtn */
 
-.changeOptionBtnsWrapper button {
+#aptOptnBtn {
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   font-size: inherit;
   padding-bottom: 5px;
@@ -196,7 +242,7 @@ transform: scale(1.1);
   transition: color 0.3s;
 }
 
-.changeOptionBtnsWrapper button:hover {color: black;}
+#aptOptnBtn:hover {color: black;}
 
 /* individual buttons */
 
@@ -212,26 +258,58 @@ transform: scale(1.1);
 
 .commentsOptnBtn {color: var(--commentsColor);}
 
-.reviewAndSubmitOptnBtn {color: var(--reviewAndSubmitColor)}
+.reviewAndSubmitBtn {
+  bottom: var(--reviewAndSubmitBtnBottom);
+  align-self: center;
+  border: solid black 2px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.8vw;
+  margin-bottom: 11px;
+  color: white;
+  background: black;
+  z-index: 1;
+  transition: color 0.3s, background 0.3s;
+  transition: bottom 0.8s;
+}
+
+.reviewAndSubmitBtn:hover {
+  background: white;
+  color: black;
+}
 
 /* All options wrappers */
 
 #aptOptionWrapper {
-  width: 100%;
-  height: 100%;
-  padding-top: 2px;
+  position: absolute;
+  width: 99%;
+  height: var(--aptOptionHeight);
+  bottom: 0;
+  align-self: center;
   text-align: center;
   background: white;
   border-radius: 10px 10px 0 0;
+  border-top: solid black 2px;
+  border-left: solid black 2px;
+  border-right: solid black 2px;
   z-index: 1;
+  box-shadow: 0 -2px 8px black;
+  transition: height 0.8s;
 }
 
 #aptOptionWrapper h3 {
-  align-self: center;
-  font-size: 1.2vw;
   width: fit-content;
-  margin: 3px 0 0 0;
+  flex-grow: 0.2;
+  align-self: center;
+  font-size: 1.3vw;
+  margin: 3px 0 3px 0;
   padding: 2px 0 2px 0;
+}
+
+#optionHeader {
+  display: flex;
+  justify-content:center; 
+  align-items: center;
 }
 
 /* Individual Options Wrappers general styling; more styling done in-line in the individual component child divs in order to reduce clutter on stylesheet*/
@@ -248,34 +326,127 @@ transform: scale(1.1);
 
 .commentsWrapper {display: var(--commentsDisplay);}
 
-.reviewAndSubmitWrapper {display: var(--reviewAndSubmitDisplay);}
+.reviewAndSubmitWrapper {
+  display: var(--reviewAndSubmitDisplay);
+  position: relative;
+  flex-direction: column;
+  animation: rollUpReviewAndSubmit 0.8s forwards;
+}
+
+/* review and submit content */
+
+.reviewAndSubmitWrapper h4 {
+  align-self: center;
+  font-size: 0.9vw;
+  border: solid black 2px;
+  background: black;
+  color: white;
+  margin: 0 0 0 0;
+  padding: 2px 0 2px 0;
+}
+
+#reviewAndSubmitRowContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  border: none;
+}
+
+.reviewAndSubmitWrapper legend {
+  background: black;
+  color: white;
+  border: solid black 2px;
+  border-radius: 10px;
+  padding: 0 10px 0 10px;
+  cursor: pointer;
+  transition: color 0.3s, background 0.3s;
+}
+
+.reviewAndSubmitWrapper legend:hover {
+  background: white;
+  color: black;
+}
+
+#reviewAndSubmitContentContainer {
+  border: solid black 3px; 
+  border-radius: 10px;
+  flex-grow: 1; 
+  margin: 10px;
+  box-shadow: 2px 2px 2px black;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+#reviewAndSubmitContentContainer:hover {
+  transform: scale(1.05);
+  box-shadow: 4px 4px 4px black;
+}
+#reviewAndSubmitContentContainer input {
+  font-size: 0.8vw;
+  width: fit-content;
+  border: none;
+  left: 0;
+  color: #425F8F;
+}
+
+#reviewAndSubmitContentContainer textarea {
+  padding: 5px;
+  width: 95%;
+  resize: none;
+  border: none;
+  color: #425F8F;
+}
+
+.submit {
+  margin-top: 10px;
+  font-size: 1.2vw;
+  background: black;
+  color: white;
+  border: solid black 2px;
+  border-radius: 15px;
+  padding: 5px 20px 5px 20px;
+  margin-bottom: 5%;
+  cursor: pointer;
+  transition: color 0.3s, background 0.3s;
+}
+
+.submit:hover {
+  background: white;
+  color: black;
+}
 
 /* all options inner content */
 
 #aptOptionsInner {
   display: flex;
   font-size: 0.83vw;
-  flex-flow: column wrap; 
+  flex-flow: column; 
   width: 100%;
   height: 100%;
 }
 
 /* next and back btns */
 
-.backNextBtns {
-  font-size: 3vw;
-  background: none;
+.backBtn, .nextBtn {
   border: none;
-  margin: 5px;
+  background: white;
+  color: black;
+  font-size: 3vw; 
   cursor: pointer;
-  opacity: 50%;
-  transition: opacity 0.2s;
+  transition: color 0.2s, background 0.2s;
 }
 
-.backNextBtns:hover {
-  opacity: 100%;
+.backBtn {
+  border-right: solid black 1px;
 }
 
+.nextBtn {
+  border-left: solid black 1px;
+}
+
+.backBtn:hover, .nextBtn:hover {
+  color: white;
+  background: black;
+}
 
 /* MENU BANNER CSS */
 .menuBanner {
@@ -336,47 +507,64 @@ transform: rotate(360deg);
 
 /* TABLET RWD BEGINS */
 @media only screen and (max-width: 810px) {
-  
-  .home {
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.2fr 1fr 1fr 1fr 0.2fr;
-    grid-template-areas: 
-    'racket' 
-    'racket'
-    'racket'
-    'racket'
-    'racket'
-    ;
-    grid-gap: 0.2rem;
+
+  /* phase one */
+
+  .mainContainer {
+    grid-column: 1 / 13;
   }
-  
-  .racketWrapper {
-    animation: fadeIn 1s ease-out forwards;
-  }
-  
+
   .racket {
-    justify-self: center;
-    align-self: center;
-    width: 236%;
-    height: 100%;
+    grid-column: 1 / 12;
   }
-  
+
+  .racket img {
+    width: 65%;
+  }
+
   .startBtnWrapper {
     grid-column: 5 / 8;
   }
-   
-  .startBtn {
-    width: 53%;
-    margin-bottom: 42%;
-    font-size: 2vw;
-  }
   
+  .startBtn {
+    margin-bottom: 42%;
+    width: 80%;
+    font-size: 1.6vw;
+  }
+
+  /* phase two */
+
   .greeting {
-    grid-column: 1;
-    grid-row: 3;
+    align-self: center;
+    grid-column: 2 / 12;
+    grid-row: 6 / 8;
+    font-size: 5vw;
+  }
+
+  .appointmentOptionsContainer {
+    grid-column: 1 / 13;
+    width: 100%;
+  }
+
+  .changeOptionBtnsWrapper {
+    font-size: 1.5vw;
+  }
+
+  #aptOptionWrapper {
+    font-size: 1.8vw;
+  }
+
+  #aptOptionWrapper h3 {
     font-size: 4vw;
   }
 
+  #aptOptionsInner {
+    display: flex;
+    font-size: 3vw;
+    flex-flow: column wrap; 
+    width: 100%;
+    height: 100%;
+  }
 }
 
 /* MOBILE RWD BEGINS */
@@ -384,28 +572,13 @@ transform: rotate(360deg);
 
   /* HOME CSS */
 
-.home {
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.2fr 1fr 1fr 1fr 0.2fr;
-  grid-template-areas: 
-  'racket' 
-  'racket'
-  'racket'
-  'racket'
-  'racket'
-  ;
-  grid-gap: 0.2rem;
-}
-
-.racketWrapper {
-  animation: fadeIn 1s ease-out forwards;
-}
 
 .racket {
-  justify-self: center;
-  align-self: center;
-  width: 330%;
-  height: 100%;
+  display: flex;
+}
+
+.racket img {
+  width: 100%;
 }
 
 .startBtnWrapper {
@@ -419,6 +592,7 @@ transform: rotate(360deg);
 }
 
 .greeting {
+  align-self: center;
   grid-column: 1;
   grid-row: 3;
   font-size: 4vw;
@@ -449,7 +623,7 @@ transform: rotate(360deg);
 /* racket */
 
 @keyframes moveRacketIntoFrame {
-  0% {margin-top: 70%;}
+  0% {margin-top: 120%;}
   100% {margin-top: 0%;}
 }
 
@@ -464,4 +638,20 @@ transform: rotate(360deg);
 @keyframes moveOptionsIntoFrame {
   0% {transform: translateY(220px);}
   100% {transform: translateY(0px);}
+}
+
+@keyframes hideAptOptionsMenu {
+  0% {height: 26%;}
+  40% {height: 32%;}
+  60% {height: 32%;}
+  100% {height: 26%;}
+}
+
+@keyframes bouncyButton {
+  0% {transform: rotateX(45deg);}
+  23% {transform: rotateX(0deg);}
+  35% {transform: rotateY(28deg);}
+  55% {transform: rotateX(23deg);}
+  62% {transform: rotateY(20deg);}
+  100% {transform: rotateX(0deg);}
 }

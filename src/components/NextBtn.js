@@ -2,7 +2,8 @@ import React from 'react'
 
 const NextBtn = (props) => {
 
-  const handleNextBtnClick = () => {
+  const handleNextBtnClick = (e) => {
+    e.stopPropagation()
     document.documentElement.style.setProperty(props.unfocus, 'white')
     document.documentElement.style.setProperty(props.currentOption, 'none')
     document.documentElement.style.setProperty(props.nextOption, 'flex')
@@ -10,7 +11,7 @@ const NextBtn = (props) => {
   }
 
   return (
-    <button className='backNextBtns' onClick={e => handleNextBtnClick()}>
+    <button className='nextBtn' onClick={e => handleNextBtnClick(e)}>
       {'>'}
     </button>
 

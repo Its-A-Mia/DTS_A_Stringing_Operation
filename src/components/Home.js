@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import Tension from '../components/Tension'
 import Racket from '../images/home-racket.png'
 import ExtraComments from './ExtraComments'
@@ -11,10 +12,45 @@ import StringType from './StringType'
 import BackBtn from './BackBtn'
 import NextBtn from './NextBtn'
 import ReviewAndSubmit from './ReviewAndSubmit'
+import OpenAptOptionsMenu from './OpenAptOptionsMenu'
+import ReviewAndSubmitBtn from './ReviewAndSubmitBtn'
 
 
 
 const Home = (props) => {
+
+  // grabs input values from forms as states to be shown on review and submit section (default values are passed in if applicable)
+  // string type input values 
+  const [mainsStringType, setMainsStringType] = useState('RPMBlast, 17 ga.')
+  const [crossesStringType, setCrossesStringType] = useState('RPMBlast, 17 ga.')
+
+  // tension input values
+  const [mainsTensionInput, setMainsTensionInput] = useState('')
+  const [mainsUnit, setMainsUnit] = useState('lbs')
+  const [crossesTensionInput, setCrossesTensionInput] = useState('')
+  const [crossesUnit, setCrossesUnit] = useState('lbs')
+
+  // optionals input values
+  const [stencilInput, setStencilInput] = useState('No')
+  const [regripInput, setRegripInput] = useState('No')
+
+  // name and contact input values
+  const [nameInput, setNameInput] = useState('')
+  const [phoneNumberInput, setPhoneNumberInput] = useState('')
+  const [emailInput, setEmailInput] = useState('')
+
+  // scheduling input values
+  const [dropOffInput, setDropOffInput] = useState('')
+  const [pickUpInput, setPickUpInput] = useState('')
+
+  // comments input values
+  const [commentsInput, setCommentsInput] = useState('')
+
+  //hides apt options menu if wrapper is clicked
+  const handleChangeOptionBtnsWrapperClick = e => {
+    document.documentElement.style.setProperty('--aptBackerHeight', `${26}%`)
+    document.documentElement.style.setProperty('--reviewAndSubmitBtnBottom', `${25}%`)
+  }
 
   const pos = { x : 0, y : 0}
 
@@ -56,7 +92,10 @@ const Home = (props) => {
     // ^^^ ensures the racketWrapper doesn't mess with the appearing divs, then starts phase two starting 1 second ^^^
     setTimeout(() => {home.style.filter = `brightness(${30}%)`}, 2000) //dims background starting 2 seconds
     setTimeout(() => {greeting.style.opacity = 0; setTimeout(() => {greeting.style.display = 'none'}, 1000)}, 4500) //removes greeting starting 4.5s
-    setTimeout(() => {document.documentElement.style.setProperty('--aptOptionsDisplay', 'flex')}, 5000) //shows aptOptions starting 5s
+    setTimeout(() => {
+      document.documentElement.style.setProperty('--aptOptionsDisplay', 'flex')
+      document.documentElement.style.setProperty('--reviewAndSubmitBtnDisplay', 'block')
+    }, 5000) //shows aptOptions starting 5s
   }
   
   return (
@@ -76,89 +115,116 @@ const Home = (props) => {
       
       {/* Phase two */}
       <div className='greeting' id='greeting'>Let's set up an appointment</div>
+
+      {/* review and submit btn */}
+      
       
       {/* Houses all necessary mechanisms for Options */}
       <div className='appointmentOptionsContainer'>
 
+      
+
+        <div className='appointmentOptionsBacker'>
         {/* Houses buttons to navigate optiions */}
-        <div className='changeOptionBtnsWrapper'>
-          {/* passing props into OpenAptOption: className, titles, which displays to turn to 'none', which option buttons to focus (changes color to black). Initial Color is the landing option */}
-          <OpenAptOption
-            btnClassName='stringTypeOptnBtn'
-            title='String Type'
-            displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
-            unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
-            display='--stringTypeDisplay'
-            toFocus='--stringTypeColor'
-            initialColor='black'
-          />
-          {'>'}
-          <OpenAptOption
-            btnClassName='tensionOptnBtn'
-            title='Tension'
-            displayNoneArr={['--stringTypeDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
-            unfocusArr={['--nameAndContactColor', '--stringTypeColor', '--optonalsColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
-            display='--tensionDisplay'
-            toFocus='--tensionColor'
-          />
-          {'>'}
-          <OpenAptOption
-            btnClassName='optionalsOptnBtn'
-            title='Optionals'
-            displayNoneArr={['--tensionDisplay', '--stringTypeDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
-            unfocusArr={['--nameAndContactColor', '--tensionColor', '--stringTypeColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
-            display='--optionalsDisplay'
-            toFocus='--optionalsColor'
-          />
-          {'>'}
-          <OpenAptOption
-            btnClassName='nameAndContactOptnBtn'
-            title='Contact Information'
-            displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--stringTypeDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
-            unfocusArr={['--stringTypeColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
-            display='--nameAndContactDisplay'
-            toFocus='--nameAndContactColor'
-          />
-          {'>'}
-          <OpenAptOption
-            btnClassName='schedulingOptnBtn'
-            title='Scheduling'
-            displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--stringTypeDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
-            unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--stringTypeColor', '--commentsColor', '--reviewAndSubmitColor']}
-            display='--schedulingDisplay'
-            toFocus='--schedulingColor'
-          />
-          {'>'}
-          <OpenAptOption
-            btnClassName='commentsOptnBtn'
-            title='Special Requests'
-            displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--stringTypeDisplay', '--reviewAndSubmitDisplay']}
-            unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--stringTypeColor', '--reviewAndSubmitColor']}
-            display='--commentsDisplay'
-            toFocus='--commentsColor'
-          />
-          {'>'}
-          {'>'}
-          <OpenAptOption
-          btnClassName='reviewAndSubmitOptnBtn'
-          title='Review & Submit'
-          displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--stringTypeDisplay', '--commentsDisplay']}
-          unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--stringTypeColor', '--commentsColor']}
-          display='--reviewAndSubmitDisplay'
-          toFocus='--reviewAndSubmitColor'
-          />
+          <div className='changeOptionBtnsWrapper'>
+            {/* passing props into OpenAptOption: className, titles, which displays to turn to 'none', which option buttons to focus (changes color to black). Initial Color is the landing option */}
+            <OpenAptOption
+              btnIdName='aptOptnBtn'
+              btnClassName='stringTypeOptnBtn'
+              title='String'
+              displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+              unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
+              display='--stringTypeDisplay'
+              toFocus='--stringTypeColor'
+              initialColor='black'
+            />
+            {'>'}
+            <OpenAptOption
+              btnIdName='aptOptnBtn'
+              btnClassName='tensionOptnBtn'
+              title='Tension'
+              displayNoneArr={['--stringTypeDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+              unfocusArr={['--nameAndContactColor', '--stringTypeColor', '--optonalsColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
+              display='--tensionDisplay'
+              toFocus='--tensionColor'
+            />
+            {'>'}
+            <OpenAptOption
+              btnIdName='aptOptnBtn'
+              btnClassName='optionalsOptnBtn'
+              title='Optionals'
+              displayNoneArr={['--tensionDisplay', '--stringTypeDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+              unfocusArr={['--nameAndContactColor', '--tensionColor', '--stringTypeColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
+              display='--optionalsDisplay'
+              toFocus='--optionalsColor'
+            />
+            {'>'}
+            <OpenAptOption
+              btnIdName='aptOptnBtn'
+              btnClassName='nameAndContactOptnBtn'
+              title='Contact'
+              displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--stringTypeDisplay', '--schedulingDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+              unfocusArr={['--stringTypeColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--commentsColor', '--reviewAndSubmitColor']}
+              display='--nameAndContactDisplay'
+              toFocus='--nameAndContactColor'
+            />
+            {'>'}
+            <OpenAptOption
+              btnIdName='aptOptnBtn'
+              btnClassName='schedulingOptnBtn'
+              title='Scheduling'
+              displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--stringTypeDisplay', '--commentsDisplay', '--reviewAndSubmitDisplay']}
+              unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--stringTypeColor', '--commentsColor', '--reviewAndSubmitColor']}
+              display='--schedulingDisplay'
+              toFocus='--schedulingColor'
+            />
+            {'>'}
+            <OpenAptOption
+              btnClassName='commentsOptnBtn'
+              btnIdName='aptOptnBtn'
+              title='Requests'
+              displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--stringTypeDisplay', '--reviewAndSubmitDisplay']}
+              unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--stringTypeColor', '--reviewAndSubmitColor']}
+              display='--commentsDisplay'
+              toFocus='--commentsColor'
+            />
+            &emsp; 
+            &emsp; 
+            <ReviewAndSubmitBtn
+              btnClassName='reviewAndSubmitBtn'
+              btnIdName='aptOptnBtn'
+              displayNoneArr={['--tensionDisplay', '--optionalsDisplay', '--nameAndContactDisplay', '--schedulingDisplay', '--stringTypeDisplay', '--commentsDisplay']}
+              unfocusArr={['--nameAndContactColor', '--tensionColor', '--optionalsColor', '--schedulingColor', '--stringTypeColor', '--commentsColor']}
+              display='--reviewAndSubmitDisplay'
+              toFocus='--reviewAndSubmitColor'
+              // passing in tension values
+              mainsTensionInput={mainsTensionInput}
+              crossesTensionInput={crossesTensionInput}
+              // name and contact input values
+              nameInput={nameInput}
+              phoneNumberInput={phoneNumberInput}
+              emailInput={emailInput}
+              // scheduling input values
+              dropOffInput={dropOffInput}
+              pickUpInput={pickUpInput}
+              // comments input value
+              commentsInput={commentsInput}
+            />
+          </div>
         </div>
-
-
-        {/* Houses the option content; composed of three main components */}
-        <div className='stringTypeWrapper' id='aptOptionWrapper'>
+        {/* Houses the option content; composed of four main components */}
+        <div className='stringTypeWrapper' id='aptOptionWrapper' onClick={e => handleChangeOptionBtnsWrapperClick()}>
+          <OpenAptOptionsMenu/>
           <BackBtn 
-            toFocus='--reviewAndSubmitColor'
-            previousOption='--reviewAndSubmitDisplay' 
+            toFocus='--commentsColor'
+            previousOption='--commentsDisplay' 
             currentOption='--stringTypeDisplay'
             unfocus='--stringTypeColor'
           />
-          <StringType/>
+          <StringType
+            setMainsStringType={setMainsStringType}
+            setCrossesStringType={setCrossesStringType}
+          />
           <NextBtn 
             toFocus='--tensionColor'
             nextOption='--tensionDisplay'
@@ -166,14 +232,20 @@ const Home = (props) => {
             unfocus='--stringTypeColor'
           />
         </div>
-        <div className='tensionWrapper' id='aptOptionWrapper'>
+        <div className='tensionWrapper' id='aptOptionWrapper' onClick={e => handleChangeOptionBtnsWrapperClick()}>
+          <OpenAptOptionsMenu/>
           <BackBtn
             toFocus='--stringTypeColor'
             previousOption='--stringTypeDisplay'
             currentOption='--tensionDisplay'
             unfocus='--tensionColor'
           />
-          <Tension/>
+          <Tension
+            setMainsTensionInput={setMainsTensionInput}
+            setMainsUnit={setMainsUnit}
+            setCrossesTensionInput={setCrossesTensionInput}
+            setCrossesUnit={setCrossesUnit}
+          />
           <NextBtn 
             toFocus='--optionalsColor'
             nextOption='--optionalsDisplay'
@@ -181,14 +253,18 @@ const Home = (props) => {
             unfocus='--tensionColor'
           />
         </div>
-        <div className='optionalsWrapper' id='aptOptionWrapper'>
+        <div className='optionalsWrapper' id='aptOptionWrapper' onClick={e => handleChangeOptionBtnsWrapperClick()}>
+          <OpenAptOptionsMenu/>
           <BackBtn 
             toFocus='--tensionColor'
             previousOption='--tensionDisplay'
             currentOption='--optionalsDisplay'
             unfocus='--optionalsColor'
           />
-          <Optionals/>
+          <Optionals
+            setStencilInput={setStencilInput}
+            setRegripInput={setRegripInput}
+          />
           <NextBtn 
             toFocus='--nameAndContactColor'
             nextOption='--nameAndContactDisplay'
@@ -196,14 +272,19 @@ const Home = (props) => {
             unfocus='--optionalsColor'
           />
         </div>
-        <div className='nameAndContactWrapper' id='aptOptionWrapper'>
+        <div className='nameAndContactWrapper' id='aptOptionWrapper' onClick={e => handleChangeOptionBtnsWrapperClick()}>
+          <OpenAptOptionsMenu/>
           <BackBtn 
             toFocus='--optionalsColor'
             previousOption='--optionalsDisplay'
             currentOption='--nameAndContactDisplay'
             unfocus='--nameAndContactColor'
           />
-          <NameAndContact/>
+          <NameAndContact
+            setNameInput={setNameInput}
+            setPhoneNumberInput={setPhoneNumberInput}
+            setEmailInput={setEmailInput}
+          />
           <NextBtn 
             toFocus='--schedulingColor'
             nextOption='--schedulingDisplay'
@@ -211,14 +292,18 @@ const Home = (props) => {
             unfocus='--nameAndContactColor'
           />
         </div>
-        <div className='schedulingWrapper' id='aptOptionWrapper'>
+        <div className='schedulingWrapper' id='aptOptionWrapper' onClick={e => handleChangeOptionBtnsWrapperClick()}>
+          <OpenAptOptionsMenu/>
           <BackBtn 
             toFocus='--nameAndContactColor'
             previousOption='--nameAndContactDisplay'
             currentOption='--schedulingDisplay'  
             unfocus='--schedulingColor'
           />
-          <Scheduling/>
+          <Scheduling
+            setDropOffInput={setDropOffInput}
+            setPickUpInput={setPickUpInput}
+          />
           <NextBtn 
             toFocus='--commentsColor'
             nextOption='--commentsDisplay'
@@ -226,34 +311,46 @@ const Home = (props) => {
             unfocus='--schedulingColor'
           />
         </div> 
-        <div className='commentsWrapper' id='aptOptionWrapper'> 
+        <div className='commentsWrapper' id='aptOptionWrapper' onClick={e => handleChangeOptionBtnsWrapperClick()}> 
+          <OpenAptOptionsMenu/>
           <BackBtn 
             toFocus='--schedulingColor'
             previousOption='--schedulingDisplay'
             currentOption='--commentsDisplay'  
             unfocus='--commentsColor'
           />
-          <ExtraComments/>
+          <ExtraComments
+            setCommentsInput={setCommentsInput}
+          />
           <NextBtn 
-            toFocus='--reviewAndSubmitColor'
-            nextOption='--reviewAndSubmitDisplay'
+            toFocus='--stringTypeColor'
+            nextOption='--stringTypeDisplay'
             currentOption='--commentsDisplay'
             unfocus='--commentsColor'
           />
         </div>
         <div className='reviewAndSubmitWrapper' id='aptOptionWrapper'>
-          <BackBtn
-            toFocus='--commentsColor'
-            previousOption='--commentsDisplay' 
-            currentOption='--reviewAndSubmitDisplay'
-            unfocus='--reviewAndSubmitColor'
-          />
-          <ReviewAndSubmit/>
-          <NextBtn
-            toFocus='--stringTypeColor'
-            nextOption='--stringTypeDisplay'
-            currentOption='--reviewAndSubmitDisplay'
-            unfocus='--reviewAndSubmitColor'
+          <ReviewAndSubmit
+            // passing in string type values
+            mainsStringType={mainsStringType}
+            crossesStringType={crossesStringType}
+            // passing in tension values
+            mainsTensionInput={mainsTensionInput}
+            mainsUnit={mainsUnit}
+            crossesTensionInput={crossesTensionInput}
+            crossesUnit={crossesUnit}
+            // passing in optionals values
+            stencilInput={stencilInput}
+            regripInput={regripInput}
+            // name and contact input values
+            nameInput={nameInput}
+            phoneNumberInput={phoneNumberInput}
+            emailInput={emailInput}
+            // scheduling input values
+            dropOffInput={dropOffInput}
+            pickUpInput={pickUpInput}
+            // comments input value
+            commentsInput={commentsInput}
           />
         </div>
       </div>

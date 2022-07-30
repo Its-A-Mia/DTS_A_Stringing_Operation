@@ -1,10 +1,15 @@
 import React from 'react'
 
-const ExtraComments = () => {
+const ExtraComments = (props) => {
+
+  const handleCommentsInput = e => {
+    props.setCommentsInput(e.target.value)
+  }
+
   return (
     <div className='comments' id='aptOptionsInner'>
-       <div style={{display: 'flex', justifyContent:'center', alignItems: 'center'}}>
-        <h3 style={{flexGrow: '0.2'}}>Special Request</h3>
+       <div id='optionHeader'>
+        <h3>Special Request</h3>
         <span style={{color: 'darkgray'}}>6/6</span>
       </div>
 
@@ -12,6 +17,7 @@ const ExtraComments = () => {
           cols='19.5'
           rows='4'
           maxLength='200'
+          onChange={handleCommentsInput}
           style={{resize: 'none'}}
         >
         </textarea>

@@ -1,6 +1,14 @@
 import React from 'react'
 
-const Scheduling = () => {
+const Scheduling = (props) => {
+
+  const handleDropOffInput = e => {
+    props.setDropOffInput(e.target.value)
+  }
+
+  const handlePickUpInput = e => {
+    props.setPickUpInput(e.target.value)
+  }
 
   //Creates minDate for Drop-off
   let minDate = new Date()
@@ -20,20 +28,31 @@ const Scheduling = () => {
 
   return (
     <div className='scheduling' id='aptOptionsInner'>
-      <div style={{display: 'flex', justifyContent:'center', alignItems: 'center'}}>
-        <h3 style={{flexGrow: '0.2'}}>Scheduling</h3>
+      <div id='optionHeader'>
+        <h3>Scheduling</h3>
         <span style={{color: 'darkgray'}}>5/6</span>
       </div>
 
       <div style={{display: 'flex', flexDirection: 'column', flexGrow: '1'}}>
         <div>
           <label>Date of Drop-off: </label>
-          <input type='date' min={`${minDate}`} max={`${maxDate}`} required></input>
+          <input 
+            type='date' 
+            min={`${minDate}`} 
+            max={`${maxDate}`} 
+            onChange={handleDropOffInput}
+            required>
+          </input>
         </div>
 
         <div>
           <label>Date of Pick-up: </label>
-          <input type='date' min={`${minDate}`} required></input>
+          <input 
+            type='date' 
+            min={`${minDate}`} 
+            onChange={handlePickUpInput}
+            required>           
+          </input>
         </div>
       </div>
     </div>
