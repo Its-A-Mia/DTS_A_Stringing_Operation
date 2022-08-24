@@ -1,5 +1,4 @@
 import React from 'react'
-import { useState } from 'react'
 
 const StringType = (props) => {
 
@@ -14,7 +13,7 @@ const StringType = (props) => {
   return (
     <div className='stringType' id='aptOptionsInner'>
       <div id='optionHeader'>
-        <h3 style={{flexGrow: '0.2'}}>String Type</h3>
+        <h3>String Type</h3>
         <span style={{color: 'darkgray'}}>1/6</span>
       </div>
       

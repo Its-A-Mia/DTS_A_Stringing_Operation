@@ -24,7 +24,7 @@ const Scheduling = (props) => {
     maxMonth = '0' + maxMonth
   }
   minDate = year + '-' + minMonth + '-' + day
-  let maxDate = year + '-' + maxMonth + '-' + '28'
+  let maxDate = `${year} - ${maxMonth} - 28`
 
   return (
     <div className='scheduling' id='aptOptionsInner'>

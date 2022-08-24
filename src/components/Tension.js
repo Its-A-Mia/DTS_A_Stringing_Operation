@@ -6,16 +6,28 @@ const Tension = (props) => {
     props.setMainsTensionInput(e.target.value)
   }
 
-  const handleMainsUnitInput = e => {
-    props.setMainsUnit(e.target.value)
-  }
-
   const handleCrossesTensionInput = e => {
     props.setCrossesTensionInput(e.target.value)
   }
 
-  const handleCrossesUnitInput = e => {
-    props.setCrossesUnit(e.target.value)
+  const handleMainsUnitClick = () => {
+    if (props.mainsUnit === 'lbs'){
+      props.setMainsUnit('kgs')
+      document.documentElement.style.setProperty('--lbsKgsMainsLeft', `${50}%`)
+    } else {
+      props.setMainsUnit('lbs')
+      document.documentElement.style.setProperty('--lbsKgsMainsLeft', 0)
+    }
+  }
+
+  const handleCrossesUnitClick = () => {
+    if (props.crossesUnit === 'lbs'){
+      props.setCrossesUnit('kgs')
+      document.documentElement.style.setProperty('--lbsKgsCrossesLeft', `${50}%`)
+    } else {
+      props.setCrossesUnit('lbs')
+      document.documentElement.style.setProperty('--lbsKgsCrossesLeft', 0)
+    }
   }
 
   return (
@@ -26,44 +38,61 @@ const Tension = (props) => {
       </div>
 
       <div style={{display: 'flex', justifyContent: 'space-around', flexGrow:'1', alignItems: 'center'}}>
-        <div>
+        <div style={{width: '50%', alignItems: 'center', justifyContent: 'center'}}>
           <label>Mains</label>
           <br></br>
-          <input 
-            type='number' 
-            id='mainsTension' 
-            name='mainsTension' 
-            size='3'
-            placeholder='10-70' 
-            min='10' max='70'
-            onChange={handleMainsTensionInput} 
-            required>
-          </input>
-          <select name='lbsOrKilos' id='lbsOrKilos' onChange={handleMainsUnitInput}>
-            <option value='lbs'>lbs</option>
-            <option value='kgs'>kgs</option>
-          </select>          
+          <div style={{display: 'flex', width: '100%', justifyContent: 'center'}}>
+            <input 
+              type='number' 
+              id='mainsTension' 
+              name='mainsTension' 
+              size='3'
+              placeholder='10-70' 
+              onChange={handleMainsTensionInput} 
+              required>
+            </input>
+            <button 
+              className='lbsOrKilosBtn'
+              onClick={e => handleMainsUnitClick(e)}
+            >
+              <div className='lbs'>
+                lbs
+              </div>
+              <div className='kgs'>
+                kgs
+              </div>
+              <span className='slider' id='sliderMains'></span>
+            </button>
+          </div>
         </div>
 
-        <div>
+        <div style={{width: '50%'}}>
           <label>Crosses</label>
           <br></br>
-          <input 
-            type='number' 
-            id='crossesTension' 
-            name='crossesTension' 
-            size='3' 
-            maxLength='2' 
-            placeholder='10-70' 
-            min='10' 
-            max='70'
-            onChange={handleCrossesTensionInput} 
-            required>
-          </input>
-          <select name='lbsOrKilos' id='lbsOrKilos' onChange={handleCrossesUnitInput}>
-            <option value='lbs'>lbs</option>
-            <option value='kgs'>kgs</option>
-          </select> 
+          <div style={{display: 'flex', width: '100%', justifyContent: 'center'}}>
+            <input 
+              type='number' 
+              id='crossesTension' 
+              name='crossesTension' 
+              size='3' 
+              maxLength='2' 
+              placeholder='10-70' 
+              onChange={handleCrossesTensionInput} 
+              required>
+            </input>
+            <button 
+                className='lbsOrKilosBtn'
+                onClick={e => handleCrossesUnitClick(e)}
+              >
+                <div className='lbs'>
+                  lbs
+                </div>
+                <div className='kgs'>
+                  kgs
+                </div>
+                <span className='slider' id='sliderCrosses'></span>
+              </button>
+          </div>
         </div>
       </div>
       <div style={{alignSelf: 'center', opacity: '65%', fontSize: '0.7vw', flexGrow:'1'}}>Our machines operate between 10 and 70 lbs/kgs</div>
