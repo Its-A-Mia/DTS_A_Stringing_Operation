@@ -15,7 +15,7 @@ const ExtraComments = (props) => {
 
         <textarea
           cols='19.5'
-          rows='4'
+          rows='5'
           maxLength='200'
           onChange={handleCommentsInput}
           style={{resize: 'none'}}

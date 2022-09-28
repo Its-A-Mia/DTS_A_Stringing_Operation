@@ -52,7 +52,7 @@ const Optionals = (props) => {
       </div>
 
       <div style={{display: 'flex', justifyContent: 'space-around', flexGrow: '1.3', flexBasis: 'auto', alignItems: 'center', marginBottom:'3%'}}>
-        <div>
+        <div style={{padding: '5px'}}>
           <label>DTS Stencil</label>
             <br></br>
           <button
@@ -65,7 +65,7 @@ const Optionals = (props) => {
           </button>
         </div>
 
-        <div>
+        <div style={{padding: '5px'}}>
           <label>Regrip</label>
             <br></br>
           <button

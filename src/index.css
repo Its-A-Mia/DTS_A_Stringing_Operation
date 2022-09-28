@@ -398,8 +398,10 @@ transform: scale(1.1);
 
 .optionalsWrapper #stencilBtn, .optionalsWrapper #regripBtn {
   padding: 10px;
-  max-width: 49px;
-  min-width: 49px;
+  /* max-width: 49px;
+  min-width: 49px; */
+  width: 55px;
+  height: 55px;
   border: solid darkgray 2px;
   border-radius: 50%;
   margin-top: 5px;
@@ -409,14 +411,10 @@ transform: scale(1.1);
 }
 
 #stencilBtn {
-  width: 55%;
-  height: auto;
   background: var(--stencilBackgroundColor);
 }
 
 #regripBtn {
-  width: 90%;
-  height: auto;
   background: var(--regripBackgroundColor);
 }
 
@@ -561,10 +559,14 @@ transform: scale(1.1);
 
 #aptOptionsInner {
   display: flex;
-  font-size: 0.83vw;
+  font-size: 1vw;
   flex-flow: column; 
   width: 100%;
   height: 100%;
+}
+
+#aptOptionsInner input, select {
+  font-size: .84vw;
 }
 
 /* next and back btns */
