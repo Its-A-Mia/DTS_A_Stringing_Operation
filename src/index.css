@@ -219,7 +219,7 @@ transform: scale(1.1);
 
 #openAptOptionsMenuBtn {
   position: absolute;
-  width: 4%;
+  width: 3.5%;
   height: auto;
   top: 6%;
   right: 10%;
@@ -766,8 +766,6 @@ transform: rotate(360deg);
   }
 
 }
-
-
 
 /*  ANIMATIONS BEGIN */
 

@@ -15,8 +15,6 @@ import ReviewAndSubmit from './ReviewAndSubmit'
 import OpenAptOptionsMenu from './OpenAptOptionsMenu'
 import ReviewAndSubmitBtn from './ReviewAndSubmitBtn'
 
-
-
 const Home = (props) => {
 
   // grabs input values from forms as states to be shown on review and submit section (default values are passed in if applicable)

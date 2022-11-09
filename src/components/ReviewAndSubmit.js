@@ -41,7 +41,7 @@ const ReviewAndSubmit = (props) => {
             <h3 style={{flexGrow: '0.2'}}>Review & Submit</h3>
         </div>
 
-    <span style={{color: 'gray'}}>Click on option title to edit | *required</span>
+    <span style={{color: 'gray'}}>Click on option title to edit</span>
 
     <form name='finalForm'>
       <fieldset id='reviewAndSubmitRowContainer'>
@@ -253,6 +253,10 @@ const ReviewAndSubmit = (props) => {
           </textarea>
         </fieldset>
       </fieldset>
+
+      <span style={{color: 'red', fontSize: '0.8vw'}}>*required</span>
+      <br></br>
+
     {/* submit button */}
       <input 
         className='submit'
