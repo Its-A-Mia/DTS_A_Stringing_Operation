@@ -8,6 +8,7 @@ const OpenAptOptionsMenu = () => {
       document.documentElement.style.setProperty('--aptBackerHeight', `${32}%`)
     }
 
+    // gives access to animation
     const [bouncyButton, setBouncyButton] = useState(false)
 
     const animation = e => {

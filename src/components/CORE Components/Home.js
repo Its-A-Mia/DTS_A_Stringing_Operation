@@ -36,7 +36,7 @@ const Home = (props) => {
 
   // name and contact input values
   const [nameInput, setNameInput] = useState('')
-  const [phoneNumberInput, setPhoneNumberInput] = useState('')
+  const [phoneNumberInput, setPhoneNumberInput] = useState(' ')
   const [emailInput, setEmailInput] = useState('')
 
   // scheduling input values
@@ -243,8 +243,10 @@ const Home = (props) => {
           <Tension
             setMainsTensionInput={setMainsTensionInput}
             setMainsUnit={setMainsUnit}
+            mainsUnit={mainsUnit}
             setCrossesTensionInput={setCrossesTensionInput}
             setCrossesUnit={setCrossesUnit}
+            crossesUnit={crossesUnit}
           />
           <NextBtn 
             toFocus='--optionalsColor'
@@ -262,6 +264,8 @@ const Home = (props) => {
             unfocus='--optionalsColor'
           />
           <Optionals
+            stencilInput={stencilInput}
+            regripInput={regripInput}
             setStencilInput={setStencilInput}
             setRegripInput={setRegripInput}
           />

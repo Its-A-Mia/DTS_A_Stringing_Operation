@@ -1,5 +1,4 @@
 import React from 'react'
-import OpenAptOption from './OpenAptOption'
 
 const ReviewAndSubmit = (props) => {
 
@@ -42,146 +41,210 @@ const ReviewAndSubmit = (props) => {
             <h3 style={{flexGrow: '0.2'}}>Review & Submit</h3>
         </div>
 
-    <span style={{color: 'gray'}}>Click on option title to edit</span>
+    <span style={{color: 'gray'}}>Click on option title to edit | *required</span>
 
     <form name='finalForm'>
       <fieldset id='reviewAndSubmitRowContainer'>
         <fieldset id='reviewAndSubmitContentContainer'>
           <legend onClick={e => handleLegendClick(e, 'string')}>String</legend>
         
+          <div style={{display: 'flex', justifyContent: 'center'}}>
             <label>Mains:</label>
               &nbsp;
-            <input 
-              type='text' 
+            <span className='inputSizingWrapper'>
+              {props.mainsStringType}
+            <input
+              name='mainsStringType'
+              type='text'
               value={props.mainsStringType}
               readOnly 
               required>
             </input>
+            </span>
+          </div>
 
-              <br></br>
-
+          <div>
             <label>Crosses:</label>
               &nbsp;
-            <input 
+            <span className='inputSizingWrapper'>
+              {props.crossesStringType}
+            <input
+              name='crossesStringType' 
               type='text' 
               value={props.crossesStringType} 
               readOnly 
               required>   
             </input>
+            </span>
+          </div>
         </fieldset>
 
         <fieldset id='reviewAndSubmitContentContainer'>
           <legend onClick={e => handleLegendClick(e, 'tension')}>Tension</legend>
-
-            <label className='tensionMainsReviewAndSubmit'>Mains:</label>
+          
+          <div>          
+            <label id='tensionMainsReviewAndSubmit'>*Mains:</label>
               &nbsp;
+            <span className='inputSizingWrapper'>
+              {tensionMains}
             <input 
+              name='tensionMains'
               type='text' 
               value={tensionMains} 
               readOnly 
               required>
             </input>
-
-              <br></br>
-
-            <label>Crosses:</label>
+            </span>
+          </div>
+              
+          
+          <div>
+            <label id='tensionCrossesReviewAndSubmit'>*Crosses:</label>
               &nbsp;
+            <span className='inputSizingWrapper'>
+              {tensionCrosses}
             <input 
+              name='tensionCrosses'
               type='text' 
               value={tensionCrosses} 
               readOnly 
               required>
             </input>
+            </span>
+          </div>
+
         </fieldset>
       </fieldset>
 
       <fieldset id='reviewAndSubmitRowContainer'>
         <fieldset id='reviewAndSubmitContentContainer'>
           <legend onClick={e => handleLegendClick(e, 'optionals')}>Optionals</legend>
-
+          
+          <div>
             <label>Stencils:</label>
               &nbsp;
+            <span className='inputSizingWrapper'>
+              {props.stencilInput}
             <input 
+              name='stencilInput'
               type='text' 
               value={props.stencilInput} 
               readOnly 
-              size='1' 
               required>
             </input>
-
-              <br></br>
-
+            </span>
+          </div>
+              
+          
+          <div>
             <label>Regrip:</label>
               &nbsp;
+            <span className='inputSizingWrapper'>
+              {props.regripInput}
             <input 
+              name='regripInput'
               type='text' 
               value={props.regripInput} 
               readOnly 
-              size='1' 
               required>
             </input>
+            </span>
+          </div>
         </fieldset>
 
         <fieldset id='reviewAndSubmitContentContainer'>
           <legend onClick={e => handleLegendClick(e, 'contact')}>Contact Information</legend>
-
-            <label>Name:</label>
+          
+          <div>
+            <label id='contactNameReviewAndSubmit'>*Name:</label>
               &nbsp;
+            <span className='inputSizingWrapper'>
+              {props.nameInput}
             <input 
+              name='nameInput'
               type='text' 
               value={props.nameInput} 
               readOnly 
               required>  
             </input>
-
-              <br></br>
-
-            <label>Phone Number:</label>
+            </span>
+          </div>
+              
+          
+          <div>
+            <label id='contactPhoneReviewAndSubmit'>*Phone Number:</label>
               &nbsp;
+            <span className='inputSizingWrapper'>
+              {props.phoneNumberInput}
             <input 
+              name='phoneNumberInput'
               type='text' 
               value={props.phoneNumberInput} 
               pattern='^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$'
               readOnly 
               required>
             </input>
-
-              <br></br>
-
-            <label>Email:</label>
+            </span>
+          </div>
+              
+          
+          <div>
+            <label id='contactEmailReviewAndSubmit'>*Email:</label>
               &nbsp;
+            <span className='inputSizingWrapper'>
+              {props.emailInput}
             <input 
+              name='emailInput'
               type='email' 
               value={props.emailInput} 
               readOnly 
               required>
             </input>
+            </span>
+          </div>
+
         </fieldset>
       </fieldset>
 
       <fieldset id='reviewAndSubmitRowContainer'>
         <fieldset id='reviewAndSubmitContentContainer' style={{minWidth: '300px'}}>
           <legend onClick={e => handleLegendClick(e, 'scheduling')}>Scheduling</legend>
-
-            <label>Drop Off Date:</label>
+          
+          <div>
+            <label id='schedulingDropOffReviewAndSubmit'>*Drop Off Date:</label>
               &nbsp;
-            <span>
-            {props.dropOffInput}
-              <input type='text' value={props.dropOffInput} readOnly size='10' required></input>
-            </span>
-              <br></br>
-            <label>Pick Up Date:</label>
+              <span className='inputSizingWrapper'>
+                {props.dropOffInput}
+              <input 
+                name='dropOffInput'
+                type='text' 
+                value={props.dropOffInput} 
+                readOnly 
+                required>       
+                </input>
+              </span>
+          </div>
+              
+          <div>
+            <label id='schedulingPickUpReviewAndSubmit'>*Pick Up Date:</label>
               &nbsp;
-            <span>
-            {props.pickUpInput}
-              <input type='text' value={props.pickUpInput} readOnly size='10' required></input>
-            </span>
-
+              <span className='inputSizingWrapper'>
+                {props.pickUpInput}
+              <input 
+                name='pickUpInput'
+                type='text' 
+                value={props.pickUpInput} 
+                readOnly 
+                required>                
+                </input>
+              </span>
+          </div>
         </fieldset>
 
         <fieldset id='reviewAndSubmitContentContainer'>
           <legend onClick={e => handleLegendClick(e, 'comments')}>Special Requests</legend>
           <textarea 
+            name='commentInput'
             type='text' 
             value={props.commentsInput} 
             rows='4'
@@ -193,8 +256,10 @@ const ReviewAndSubmit = (props) => {
     {/* submit button */}
       <input 
         className='submit'
+        id='submit'
         type='submit' 
-        value='Submit'>
+        value='Submit'
+        >
       </input>
 
     </form>

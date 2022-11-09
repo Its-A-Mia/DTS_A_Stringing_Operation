@@ -19,15 +19,31 @@
   --commentsDisplay: none;
   --reviewAndSubmitDisplay: none;
   /* changeAptBtns color */
-  --nameAndContactColor: 'white';
-  --tensionColor: 'white';
-  --stringTypeColor: 'white';
-  --optionalsColor: 'white';
-  --schedulingColor: 'white';
-  --commentsColor: 'white';
+  --nameAndContactColor: white;
+  --tensionColor: white;
+  --stringTypeColor: white;
+  --optionalsColor: white;
+  --schedulingColor: white;
+  --commentsColor: white;
+  /* Tension */
+  /* mains */
+  --lbsKgsMainsLeft: 0;
+  --lbsMainsBorderRadius: 15px;
+  --kgsMainsBorderRadius: 0px;
+  /* crosses */
+  --lbsKgsCrossesLeft: 0;
+  --lbsCrossesBorderRadius: 15px;
+  --kgsCrossesBorderRadius: 0px;
+  /* optionals colors */
+  --stencilBackgroundColor: darkgray;
+  --regripBackgroundColor: darkgray;
   /* height control */
   --aptOptionHeight: 25%;
   --aptBackerHeight: 26%;
+  /* submitBtn */
+  --submitBGBorderColor: black;
+  --submitHoverBGColor: white;
+  --submitTextColor: black;
 }
 
 /* */
@@ -228,7 +244,7 @@ transform: scale(1.1);
 }
 
 .bouncyButton {
-  animation: bouncyButton 0.4s ease-out;
+  animation: bouncyButton 0.6s ease-out;
 }
 
 /* changeAptOptionBtn */
@@ -316,15 +332,129 @@ transform: scale(1.1);
 
 .stringTypeWrapper {display: var(--stringTypeDisplay);}
 
+/* stringType content */
+
+.stringTypeWrapper select {
+  padding: 5px;
+  border: solid black 2px;
+  border-radius: 10px;
+  background: white;
+  color: black;
+}
+
+/* tension content */
+
 .tensionWrapper {display: var(--tensionDisplay);}
+
+.tensionWrapper input {
+  padding: 5px;
+  border: solid black 2px;
+  border-radius: 10px;
+  background: white;
+  color: black;
+  text-align: center;
+}
+
+.lbsOrKilosBtn {
+  display: flex;
+  position: relative;
+  width: 23%;
+  padding: 1px 1px 1px 5px;
+  border: solid darkgray 2px;
+  border-radius: 15px;
+  background: darkgray;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 8px;
+  font-size: 0.8vw;
+}
+
+.lbs, .kgs {
+  color: white;
+  z-index: 2;
+}
+
+.slider {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(227,240,87,1) 0%, rgba(146,168,29,1) 100%);
+  z-index: 1;
+  transition: inset 0.4s;
+}
+
+#sliderMains {
+  left: var(--lbsKgsMainsLeft);
+}
+
+#sliderCrosses{
+  left: var(--lbsKgsCrossesLeft)
+}
+
+/* optionals content */
 
 .optionalsWrapper {display: var(--optionalsDisplay);}
 
+.optionalsWrapper #stencilBtn, .optionalsWrapper #regripBtn {
+  padding: 10px;
+  /* max-width: 49px;
+  min-width: 49px; */
+  width: 55px;
+  height: 55px;
+  border: solid darkgray 2px;
+  border-radius: 50%;
+  margin-top: 5px;
+  color: white;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+#stencilBtn {
+  background: var(--stencilBackgroundColor);
+}
+
+#regripBtn {
+  background: var(--regripBackgroundColor);
+}
+
+/* name and contact content */
+
 .nameAndContactWrapper {display: var(--nameAndContactDisplay);}
+
+.nameAndContactWrapper input {
+  margin: 2px;
+  border: solid black 2px;
+  border-radius: 10px;
+  background: white;
+  color: black;
+}
+
+/* scheduling content */
 
 .schedulingWrapper {display: var(--schedulingDisplay);}
 
+.schedulingWrapper input {
+  margin: 2px;
+  border: solid black 2px;
+  border-radius: 10px;
+  background: white;
+  color: black;
+}
+
+/* comments content */
+
 .commentsWrapper {display: var(--commentsDisplay);}
+
+.commentsWrapper textarea {
+  margin: 3px;
+  border: solid black 2px;
+  border-radius: 10px;
+  background: white;
+  color: black;
+}
+
+/* review and submit content */
 
 .reviewAndSubmitWrapper {
   display: var(--reviewAndSubmitDisplay);
@@ -332,8 +462,6 @@ transform: scale(1.1);
   flex-direction: column;
   animation: rollUpReviewAndSubmit 0.8s forwards;
 }
-
-/* review and submit content */
 
 .reviewAndSubmitWrapper h4 {
   align-self: center;
@@ -368,8 +496,12 @@ transform: scale(1.1);
 }
 
 #reviewAndSubmitContentContainer {
+  display: flex;
+  flex-direction: column;
   border: solid black 3px; 
   border-radius: 10px;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1; 
   margin: 10px;
   box-shadow: 2px 2px 2px black;
@@ -380,8 +512,15 @@ transform: scale(1.1);
   transform: scale(1.05);
   box-shadow: 4px 4px 4px black;
 }
+
+.inputSizingWrapper {
+  position: relative;
+  padding-right: 5px;
+}
+
 #reviewAndSubmitContentContainer input {
   font-size: 0.8vw;
+  position: absolute;
   width: fit-content;
   border: none;
   left: 0;
@@ -399,9 +538,11 @@ transform: scale(1.1);
 .submit {
   margin-top: 10px;
   font-size: 1.2vw;
-  background: black;
+  background: var(--submitBGBorderColor);
   color: white;
-  border: solid black 2px;
+  border-color: var(--submitBGBorderColor);
+  border-style: solid;
+  border-width: 2px;
   border-radius: 15px;
   padding: 5px 20px 5px 20px;
   margin-bottom: 5%;
@@ -410,18 +551,22 @@ transform: scale(1.1);
 }
 
 .submit:hover {
-  background: white;
-  color: black;
+  background: var(--submitHoverBGColor);
+  color: var(--submitTextColor);
 }
 
 /* all options inner content */
 
 #aptOptionsInner {
   display: flex;
-  font-size: 0.83vw;
+  font-size: 1vw;
   flex-flow: column; 
   width: 100%;
   height: 100%;
+}
+
+#aptOptionsInner input, select {
+  font-size: .84vw;
 }
 
 /* next and back btns */
@@ -564,6 +709,21 @@ transform: rotate(360deg);
     flex-flow: column wrap; 
     width: 100%;
     height: 100%;
+  }
+
+  .changeOptionBtnsWrapper {
+    font-size: 2.2vw;
+  }
+
+  #openAptOptionsMenuBtn {
+    width: 5%;
+    right: 12%;
+    font-size: 2.5vw;
+  }
+
+  .nextBtn, .backBtn {
+    width: 8%;
+    font-size: 8vw;
   }
 }
 
