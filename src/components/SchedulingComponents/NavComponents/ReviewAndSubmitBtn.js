@@ -41,7 +41,6 @@ const ReviewAndSubmitBtn = (props) => {
       }
     // checks if the validity state is false
       for (let i = 0; i < 6; i++) {
-        console.log(inputValidityForSubmitArray[i])
         if (inputValidityForSubmitArray[i] === false) {
           notValidated()
           setInputValidityForSubmitArray([])
