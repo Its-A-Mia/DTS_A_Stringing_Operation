@@ -1,12 +1,10 @@
-import React from 'react';
-import Home from './components/COREComponents/Home';
-import MenuBanner from './components/COREComponents/MenuBanner';
+import React from "react";
+import Home from "./components/home/Home";
 
 function App() {
   return (
     <div className="App">
-      <Home/>
-      <MenuBanner/>
+      <Home />
     </div>
   );
 }
