@@ -46,6 +46,22 @@ export const colors: Colors = {
   black: '#000000',
 };
 
-export const getBackgroundColor = (): Color => {
-  return `background-color: ${colors.light}`;
+export const getColor = (color: keyof Colors): string => {
+  return `color: ${colors[color]}`;
+};
+
+export const getActiveColor = (color: keyof Colors): string => {
+  return `color: ${colors[color]}`;
+};
+
+export const getBackgroundColor = (color: keyof Colors): string => {
+  return `background-color: ${colors[color]}`;
+};
+
+export const getHoverBackgroundColor = (color: keyof Colors): string => {
+  return `background-color: ${colors[color]}`;
+};
+
+export const getBorderColor = (color: keyof Colors): string => {
+  return `border-color: ${colors[color]}`;
 };
