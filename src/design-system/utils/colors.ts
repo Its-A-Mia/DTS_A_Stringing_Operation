@@ -1,15 +1,15 @@
 type Color = string;
 
-interface ColorSet {
-  primary: Color;
-  secondary: Color;
-  tertiary: Color;
-}
-
 interface Colors {
-  orangePeach: ColorSet;
-  blastRed: ColorSet;
-  coolBlue: ColorSet;
+  orangePeachPrimary: Color;
+  orangePeachSecondary: Color;
+  orangePeachTertiary: Color;
+  blastRedPrimary: Color;
+  blastRedSecondary: Color;
+  blastRedTertiary: Color;
+  coolBluePrimary: Color;
+  coolBlueSecondary: Color;
+  coolBlueTertiary: Color;
   success: Color;
   danger: Color;
   warning: Color;
@@ -21,47 +21,41 @@ interface Colors {
 }
 
 export const colors: Colors = {
-  orangePeach: {
-    primary: '#E56C42',
-    secondary: 'ED835F',
-    tertiary: 'F3A083',
-  },
-  blastRed: {
-    primary: '#C83728',
-    secondary: 'C25448',
-    tertiary: 'DC7F75',
-  },
-  coolBlue: {
-    primary: '0F49A7',
-    secondary: '406BAF',
-    tertiary: '6986B5',
-  },
+  orangePeachPrimary: '#e56c42',
+  orangePeachSecondary: '#ed835f',
+  orangePeachTertiary: '#f3a083',
+  blastRedPrimary: '#c83728',
+  blastRedSecondary: '#c25448',
+  blastRedTertiary: '#dc7F75',
+  coolBluePrimary: '#0f49a7',
+  coolBlueSecondary: '#406baf',
+  coolBlueTertiary: '#6986b5',
   success: '#28a745',
-  danger: '#C83728',
+  danger: '#c83728',
   warning: '#ffc107',
-  info: '#0F49A7',
-  light: '#F2F2F2',
+  info: '#0f49A7',
+  light: '#f2f2f2',
   dark: '#333333',
   white: '#ffffff',
   black: '#000000',
 };
 
-export const getColor = (color: keyof Colors): string => {
+export function getColor(color: keyof typeof colors): string {
+  return `color: ${colors[color]}`;
+}
+
+export const getActiveColor = (color: keyof typeof colors): string => {
   return `color: ${colors[color]}`;
 };
 
-export const getActiveColor = (color: keyof Colors): string => {
-  return `color: ${colors[color]}`;
-};
-
-export const getBackgroundColor = (color: keyof Colors): string => {
+export const getBackgroundColor = (color: keyof typeof colors): string => {
   return `background-color: ${colors[color]}`;
 };
 
-export const getHoverBackgroundColor = (color: keyof Colors): string => {
+export const getHoverBackgroundColor = (color: keyof typeof colors): string => {
   return `background-color: ${colors[color]}`;
 };
 
-export const getBorderColor = (color: keyof Colors): string => {
+export const getBorderColor = (color: keyof typeof colors): string => {
   return `border-color: ${colors[color]}`;
 };
