@@ -1,0 +1,28 @@
+header {
+  display: flex;
+  margin: 2em 0 3em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+section {
+  border: solid blue 2px;
+}
+
+.icon {
+  margin: 0 1em;
+  width: 37px;
+  height: 38px;
+  border: solid red 1px;
+}
+
+.burger-menu {
+  margin: 0 1em;
+  width: 27px;
+  height: 18px;
+  border: solid red 1px;
+}
+
+.heading-landing {
+  margin-bottom: 7.5em;
+}

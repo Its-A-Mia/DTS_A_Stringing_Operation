@@ -9,3 +9,28 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/*  ==================
+         Typograpy
+    ==================  */
+
+h1 {
+  font-family: "Ubuntu", sans-serif;
+  font-size: 2rem;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75rem;
+}
+
+.center-aligned-text {
+  text-align: center;
+}
+
+.container {
+  width: 85%;
+  max-width: 1440px;
+  margin: 0 auto;
+  border: black solid 1px;
+}
