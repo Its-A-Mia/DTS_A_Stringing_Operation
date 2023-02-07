@@ -24,6 +24,6 @@ describe('colors', () => {
   });
 
   it('can return a string defining border-color as css', () => {
-    expect(getBorderColor('blastRedPrimary')).toBe('border-color: #c83728');
+    expect(getBorderColor('primary')).toBe('border-color: #e56C42');
   });
 });
