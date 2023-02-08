@@ -11,8 +11,6 @@ interface ButtonProps {
   ariaLabel?: string;
 }
 
-// const secondaryStyles = css``;
-
 export const Button: React.FC = ({
   variant = 'primary',
   type = 'button',
